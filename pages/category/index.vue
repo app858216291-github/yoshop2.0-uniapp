@@ -19,7 +19,7 @@
       <view class="cate-wrapper cate_style__11">
         <scroll-view class="clear" :scroll-y="true" :style="{ height: `${scrollHeight - 10}px` }">
           <view class="cate-item" v-for="(item, index) in list" :key="index" @click="onTargetGoodsList(item.category_id)">
-            <image mode="widthFix" :src="item.image.preview_url"></image>
+            <image v-if="item.image" mode="widthFix" :src="item.image.preview_url"></image>
             <text class="f-26">{{ item.name }}</text>
           </view>
         </scroll-view>
@@ -31,8 +31,8 @@
 
       <!-- 左侧 一级分类 -->
       <scroll-view class="cate-left f-28" :scroll-y="true" :style="{ height: `${scrollHeight}px` }">
-        <text class="type-nav" :class="{ selected: curIndex == index }" v-for="(item, index) in list"
-          :key="index" @click="handleSelectNav(index)">{{ item.name }}</text>
+        <text class="type-nav" :class="{ selected: curIndex == index }" v-for="(item, index) in list" :key="index"
+          @click="handleSelectNav(index)">{{ item.name }}</text>
       </scroll-view>
 
       <!-- 右侧 二级分类 -->
@@ -43,7 +43,7 @@
               <view class="cate-cont-box">
                 <view class="flex-three" v-for="(item, idx) in list[curIndex].children" :key="idx" @click="onTargetGoodsList(item.category_id)">
                   <view class="cate-img">
-                    <image :src="item.image.preview_url"></image>
+                    <image v-if="item.image" :src="item.image.preview_url"></image>
                   </view>
                   <text>{{ item.name }}</text>
                 </view>
@@ -148,7 +148,6 @@
         const app = this
         const data = result.data
         app.list = data.list
-        app.notcont = !data.list.length
       },
 
       /**
