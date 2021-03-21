@@ -8,7 +8,7 @@
           <text class="iconfont icon-dingwei"></text>
         </view>
         <view class="detail-content flex-box">
-          <block v-if="order.address.address_id">
+          <block v-if="order.address">
             <view class="detail-content__title dis-flex">
               <text class="f-30">{{ order.address.name }}</text>
               <text class="detail-content__title-phone f-28">{{ order.address.phone }}</text>
@@ -97,7 +97,7 @@
       <view v-if="curDelivery == DeliveryTypeEnum.EXPRESS.value" class="dis-flex flow-all-list">
         <text class="flex-five">配送费用：</text>
         <view class="flex-five t-r">
-          <view v-if="order.address.address_id">
+          <view v-if="order.address">
             <text class="col-m" v-if="order.isIntraRegion">+￥{{ order.expressPrice }}</text>
             <text v-else>不在配送范围</text>
           </view>
