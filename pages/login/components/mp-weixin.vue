@@ -8,7 +8,10 @@
     <view class="auth-title">申请获取以下权限</view>
     <view class="auth-subtitle">获得你的公开信息（昵称、头像等）</view>
     <view class="login-btn">
-      <button class="button btn-normal" open-type="getUserInfo" lang="zh_CN" @getuserinfo="getUserInfo">授权登录</button>
+      <!-- 获取微信用户信息（旧版已弃用） -->
+      <!-- <button class="button btn-normal" open-type="getUserInfo" lang="zh_CN" @getuserinfo="getUserInfo">授权登录</button> -->
+      <!-- 获取微信用户信息（新版） -->
+      <button class="button btn-normal" @click.stop="getUserProfile">授权登录</button>
     </view>
     <view class="no-login-btn">
       <button class="button btn-normal" @click="handleCancel">暂不登录</button>
@@ -22,6 +25,7 @@
     data() {
       return {
         // 微信小程序登录凭证 (code)
+        // 提交到后端，用于换取openid
         code: ''
       }
     },
@@ -46,7 +50,7 @@
       },
 
       /**
-       * 授权登录
+       * 授权登录（旧版弃用）
        */
       getUserInfo(e) {
         const app = this
@@ -57,6 +61,27 @@
             userInfo: JSON.parse(e.detail.rawData) // 微信用户信息
           })
         }
+      },
+
+      // 获取微信用户信息(新版)
+      getUserProfile() {
+        const app = this
+        wx.canIUse('getUserProfile') && wx.getUserProfile({
+          lang: 'zh_CN',
+          desc: '获取用户相关信息',
+          success({ userInfo }) {
+            console.log('用户同意了授权')
+            console.log('userInfo：', userInfo)
+            app.$emit('success', {
+              oauth: 'MP-WEIXIN', // 第三方登录类型: MP-WEIXIN
+              code: app.code, // 微信登录的code, 用于换取openid
+              userInfo // 微信用户信息
+            })
+          },
+          fail() {
+            console.log('用户拒绝了授权')
+          }
+        })
       },
 
       /**

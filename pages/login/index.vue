@@ -32,7 +32,9 @@
     onLoad(options) {
       const app = this
       // 只有微信小程序才显示获取用户信息按钮
-      app.isShowUserInfo = app.$platform === 'MP-WEIXIN'
+      // #ifdef MP-WEIXIN
+      app.isShowUserInfo = wx.canIUse('getUserProfile')
+      // #endif
     },
 
     methods: {
