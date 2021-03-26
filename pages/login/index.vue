@@ -40,10 +40,19 @@
     methods: {
 
       // 获取到用户信息的回调函数
-      onGetUserInfoSuccess(partyData) {
+      onGetUserInfoSuccess({ oauth, code, userInfo }) {
+        // 记录第三方用户信息数据
+        this.partyData = { oauth, code, userInfo }
+        // 显示注册页面
+        this.onShowRegister()
+      },
+
+      // 显示注册页面
+      onShowRegister() {
+        // 是否显示获取用户信息组件
         this.isShowUserInfo = false
+        // 是否已获取到了用户信息
         this.isExistUserInfo = true
-        this.partyData = partyData
       }
     }
   }

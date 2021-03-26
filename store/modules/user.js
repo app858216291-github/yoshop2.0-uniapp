@@ -38,11 +38,24 @@ const user = {
       return new Promise((resolve, reject) => {
         LoginApi.login({ form: data })
           .then(response => {
-            const data = response.data
-            loginSuccess(commit, data)
+            const result = response.data
+            loginSuccess(commit, result)
             resolve(response)
           })
-          .catch(error => reject(error))
+          .catch(reject)
+      })
+    },
+
+    // 微信小程序快捷登录
+    MpWxLogin({ commit }, data) {
+      return new Promise((resolve, reject) => {
+        LoginApi.mpWxLogin({ form: data }, { isPrompt: false })
+          .then(response => {
+            const result = response.data
+            loginSuccess(commit, result)
+            resolve(response)
+          })
+          .catch(reject)
       })
     },
 
