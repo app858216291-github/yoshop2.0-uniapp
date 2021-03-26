@@ -9,8 +9,19 @@
           <image class="image" :src="userInfo.avatar_url ? userInfo.avatar_url : '/static/default-avatar.png'"></image>
         </view>
         <view class="user-content">
+          <!-- 会员昵称 -->
           <view class="nick-name">{{ userInfo.nick_name }}</view>
-          <view class="mobile">{{ userInfo.mobile }}</view>
+          <!-- 会员等级 -->
+          <view v-if="userInfo.grade_id > 0 && userInfo.grade" class="user-grade">
+            <view class="user-grade_icon">
+              <image class="image" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAMAAABEpIrGAAAA0lBMVEUAAAD/tjL/tzH/uDP/uC7/tjH/tzH/tzL/tTH+tTL+tjP/tDD/tTD+tzD/tjL/szD/uDH/tjL/tjL+tjD/tjT/szb/tzL/tTL+uTH+tjL/tjL/tjL/tTT/tjL/tjL+tjH/uTL/vDD/tjL/tjH/tzL9uS//tTL/nBr/sS7/tjH/ujL/szD/uTv+rzf/tzL+tzH+vDP+uzL+tjP+ry7+tDL9ki/7szf/sEX/tTL/tjL+tjL/tTH/tTT/tzH/tzL/tjP/sTX/uTP/wzX+rTn/vDX9vC8m8ckhAAAAOXRSTlMAlnAMB/vjxKWGMh0S6drMiVxPRkEY9PLy0ru0sKagmo5+dGtgVCMgBP716eXWyMGxqJGRe2o5KSmFNjaYAAABP0lEQVQ4y8XS13KDMBAF0AWDDe4t7r3ETu9lVxJgJ/n/X8rKAzHG5TE+Twz3zki7I/g/KXdghIbGJewrU4yzn08Ebgl6TuZzzuOC6W5es3HX6qsSz3NFShRU0MpucytDmOSpu3yULx3CA9RD1HjVedc0jSjqm6ZzhUjDsFDQhSp/OKj5GQvg0+ZCOixsbtDLAeTTOm/yGi8GyIphIVsgH737FEDV44LJa88IRKK/SetrwT9G/GUIr6vXjoy4GXn7+RboVXnghuSjaoGecwQxL2su3CwAKlO+QFoqxI4FMctHQhQd2OhxTu184jWUlI+rMTBTn1/IQcJHQ6GQdZ7pWiDaNdhTt330efISeiqYwQEzQpTlsURJLhzkEmpCPsERfeIUVyXr6MNuIyp5uziW6xURtt7hhGwzmMNJExfO4Bd9X0ZPqAxdNwAAAABJRU5ErkJggg=="></image>
+            </view>
+            <view class="user-grade_name">
+              <text>{{ userInfo.grade.name }}</text>
+            </view>
+          </view>
+          <!-- 会员无等级时显示手机号 -->
+          <view v-else class="mobile">{{ userInfo.mobile }}</view>
         </view>
       </view>
       <!-- 未登录 -->
@@ -387,10 +398,33 @@
           font-size: 26rpx;
         }
 
+        .user-grade {
+          display: flex;
+          align-items: center;
+          background: #3c3c3c;
+          margin-top: 12rpx;
+          border-radius: 10rpx;
+          padding: 4rpx 12rpx;
+
+          .user-grade_icon .image {
+            display: block;
+            width: 32rpx;
+            height: 32rpx;
+          }
+
+          .user-grade_name {
+            margin-left: 5rpx;
+            font-size: 24rpx;
+            color: #EEE0C3;
+          }
+
+        }
+
         .login-tips {
           margin-top: 12rpx;
           font-size: 28rpx;
         }
+
       }
     }
   }
