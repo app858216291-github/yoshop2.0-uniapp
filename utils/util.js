@@ -19,7 +19,10 @@ export const urlEncode = (obj = {}) => {
   const result = []
   for (const key in obj) {
     const item = obj[key]
-    if (item.constructor == Array) {
+    if (!item) {
+      continue
+    }
+    if (isArray(item)) {
       item.forEach(val => {
         result.push(key + '=' + val)
       })
@@ -92,7 +95,7 @@ export const isObject = (object) => {
 }
 
 /**
- * 判断是否为对象
+ * 判断是否为数组
  * @param {*} array
  */
 export const isArray = (array) => {
