@@ -7,8 +7,9 @@
     <view class="cate-content" v-if="templet.style == 10 && list.length > 0">
       <view class="cate-wrapper cate_style__10">
         <scroll-view :scroll-y="true" :style="{ height: `${scrollHeight - 10}px` }">
-          <view class="cate-item" v-for="(item, index) in list" :key="index" @click="onTargetGoodsList(item.category_id)">
-            <image mode="widthFix" :src="item.image.preview_url"></image>
+          <view class="cate-item" v-for="(item, index) in list" :key="index"
+            @click="onTargetGoodsList(item.category_id)">
+            <image v-if="item.image" mode="widthFix" :src="item.image.preview_url"></image>
           </view>
         </scroll-view>
       </view>
@@ -18,7 +19,8 @@
     <view class="cate-content" v-else-if="templet.style == 11 && list.length > 0">
       <view class="cate-wrapper cate_style__11">
         <scroll-view class="clear" :scroll-y="true" :style="{ height: `${scrollHeight - 10}px` }">
-          <view class="cate-item" v-for="(item, index) in list" :key="index" @click="onTargetGoodsList(item.category_id)">
+          <view class="cate-item" v-for="(item, index) in list" :key="index"
+            @click="onTargetGoodsList(item.category_id)">
             <image v-if="item.image" mode="widthFix" :src="item.image.preview_url"></image>
             <text class="f-26">{{ item.name }}</text>
           </view>
@@ -36,12 +38,14 @@
       </scroll-view>
 
       <!-- 右侧 二级分类 -->
-      <scroll-view class="cate-right b-f" :scroll-top="scrollTop" :scroll-y="true" :style="{ height: `${scrollHeight}px` }">
+      <scroll-view class="cate-right b-f" :scroll-top="scrollTop" :scroll-y="true"
+        :style="{ height: `${scrollHeight}px` }">
         <view v-if="list[curIndex]">
           <view class="cate-right-cont">
             <view class="cate-two-box">
               <view class="cate-cont-box">
-                <view class="flex-three" v-for="(item, idx) in list[curIndex].children" :key="idx" @click="onTargetGoodsList(item.category_id)">
+                <view class="flex-three" v-for="(item, idx) in list[curIndex].children" :key="idx"
+                  @click="onTargetGoodsList(item.category_id)">
                   <view class="cate-img">
                     <image v-if="item.image" :src="item.image.preview_url"></image>
                   </view>
@@ -119,7 +123,8 @@
         app.isLoading = true
         Promise.all([
             // 获取分类模板设置
-            SettingModel.data(),
+            // 优化建议: 可以将此处的false改为true 启用缓存
+            SettingModel.data(false),
             // 获取分类列表
             CategoryApi.list()
           ])
