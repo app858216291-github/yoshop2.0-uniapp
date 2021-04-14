@@ -12,18 +12,18 @@
     <!-- display -->
     <view v-else class="display">
       <view class="display-left" :style="{ padding: `${itemStyle.paddingTop}px ${itemStyle.paddingLeft}px` }">
-        <image class="image" @click="onLink(dataItem.link)" :src="dataList[0].imgUrl"></image>
+        <image class="image" @click="onLink(dataList[0].link)" :src="dataList[0].imgUrl"></image>
       </view>
       <view class="display-right">
         <view v-if="dataList.length >= 2 " class="display-right1" :style="{ padding: `${itemStyle.paddingTop}px ${itemStyle.paddingLeft}px` }">
-          <image class="image" @click="onLink(dataItem.link)" :src="dataList[1].imgUrl"></image>
+          <image class="image" @click="onLink(dataList[1].link)" :src="dataList[1].imgUrl"></image>
         </view>
         <view class="display-right2">
           <view v-if="dataList.length >= 3 " class="left" :style="{ padding: `${itemStyle.paddingTop}px ${itemStyle.paddingLeft}px` }">
-            <image class="image" @click="onLink(dataItem.link)" :src="dataList[2].imgUrl"></image>
+            <image class="image" @click="onLink(dataList[2].link)" :src="dataList[2].imgUrl"></image>
           </view>
           <view v-if="dataList.length >= 4 " class="right" :style="{ padding: `${itemStyle.paddingTop}px ${itemStyle.paddingLeft}px` }">
-            <image class="image" @click="onLink(dataItem.link)" :src="dataList[3].imgUrl"></image>
+            <image class="image" @click="onLink(dataList[3].link)" :src="dataList[3].imgUrl"></image>
           </view>
         </view>
       </view>
