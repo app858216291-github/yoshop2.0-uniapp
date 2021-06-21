@@ -76,21 +76,27 @@
       // 这里分为两个逻辑:
       // 1.将code和userInfo提交到后端，如果存在该用户 则实现自动登录，无需再填写手机号
       // 2.如果不存在该用户, 则显示注册页面, 需填写手机号
+      // 3.如果后端报错了, 则显示错误信息
       async onAuthSuccess(userInfo) {
         const app = this
         // 提交到后端
         store.dispatch('MpWxLogin', { code: await app.getCode(), userInfo })
           .then(result => {
-            // 显示登录成功
+            // 一键登录成功
             app.$toast(result.message)
             // 跳转回原页面
             setTimeout(() => {
               app.onNavigateBack()
             }, 2000)
           })
-          .catch(() => {
-            // 将oauth提交给父级
-            app.onEmitSuccess(userInfo)
+          .catch(err => {
+            if (err.result.data.showError) {
+              // 显示错误信息
+              app.$toast(err.result.message)
+            } else {
+              // 将oauth提交给父级
+              app.onEmitSuccess(userInfo)
+            }
           })
       },
 
