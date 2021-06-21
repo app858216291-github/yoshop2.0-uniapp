@@ -222,6 +222,14 @@
               app.onNavigateBack(1)
             }, 2000)
           })
+          .catch(err => {
+            if (err.result.data.isBack) {
+              // 跳转回原页面
+              setTimeout(() => {
+                app.onNavigateBack(1)
+              }, 2000)
+            }
+          })
           .finally(() => app.isLoading = false)
       },
 
