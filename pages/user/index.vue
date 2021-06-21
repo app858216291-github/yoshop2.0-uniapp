@@ -1,7 +1,8 @@
 <template>
   <view v-if="!isLoading" class="container">
     <!-- 页面头部 -->
-    <view class="main-header" :style="{ height: $platform == 'H5' ? '240rpx' : '320rpx', paddingTop: $platform == 'H5' ? '0' : '50rpx' }">
+    <view class="main-header"
+      :style="{ height: $platform == 'H5' ? '240rpx' : '320rpx', paddingTop: $platform == 'H5' ? '0' : '50rpx' }">
       <image class="bg-image" src="/static/background/user-header.png" mode="scaleToFill"></image>
       <!-- 用户信息 -->
       <view v-if="isLogin" class="user-info">
@@ -14,7 +15,9 @@
           <!-- 会员等级 -->
           <view v-if="userInfo.grade_id > 0 && userInfo.grade" class="user-grade">
             <view class="user-grade_icon">
-              <image class="image" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAMAAABEpIrGAAAA0lBMVEUAAAD/tjL/tzH/uDP/uC7/tjH/tzH/tzL/tTH+tTL+tjP/tDD/tTD+tzD/tjL/szD/uDH/tjL/tjL+tjD/tjT/szb/tzL/tTL+uTH+tjL/tjL/tjL/tTT/tjL/tjL+tjH/uTL/vDD/tjL/tjH/tzL9uS//tTL/nBr/sS7/tjH/ujL/szD/uTv+rzf/tzL+tzH+vDP+uzL+tjP+ry7+tDL9ki/7szf/sEX/tTL/tjL+tjL/tTH/tTT/tzH/tzL/tjP/sTX/uTP/wzX+rTn/vDX9vC8m8ckhAAAAOXRSTlMAlnAMB/vjxKWGMh0S6drMiVxPRkEY9PLy0ru0sKagmo5+dGtgVCMgBP716eXWyMGxqJGRe2o5KSmFNjaYAAABP0lEQVQ4y8XS13KDMBAF0AWDDe4t7r3ETu9lVxJgJ/n/X8rKAzHG5TE+Twz3zki7I/g/KXdghIbGJewrU4yzn08Ebgl6TuZzzuOC6W5es3HX6qsSz3NFShRU0MpucytDmOSpu3yULx3CA9RD1HjVedc0jSjqm6ZzhUjDsFDQhSp/OKj5GQvg0+ZCOixsbtDLAeTTOm/yGi8GyIphIVsgH737FEDV44LJa88IRKK/SetrwT9G/GUIr6vXjoy4GXn7+RboVXnghuSjaoGecwQxL2su3CwAKlO+QFoqxI4FMctHQhQd2OhxTu184jWUlI+rMTBTn1/IQcJHQ6GQdZ7pWiDaNdhTt330efISeiqYwQEzQpTlsURJLhzkEmpCPsERfeIUVyXr6MNuIyp5uziW6xURtt7hhGwzmMNJExfO4Bd9X0ZPqAxdNwAAAABJRU5ErkJggg=="></image>
+              <image class="image"
+                src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAMAAABEpIrGAAAA0lBMVEUAAAD/tjL/tzH/uDP/uC7/tjH/tzH/tzL/tTH+tTL+tjP/tDD/tTD+tzD/tjL/szD/uDH/tjL/tjL+tjD/tjT/szb/tzL/tTL+uTH+tjL/tjL/tjL/tTT/tjL/tjL+tjH/uTL/vDD/tjL/tjH/tzL9uS//tTL/nBr/sS7/tjH/ujL/szD/uTv+rzf/tzL+tzH+vDP+uzL+tjP+ry7+tDL9ki/7szf/sEX/tTL/tjL+tjL/tTH/tTT/tzH/tzL/tjP/sTX/uTP/wzX+rTn/vDX9vC8m8ckhAAAAOXRSTlMAlnAMB/vjxKWGMh0S6drMiVxPRkEY9PLy0ru0sKagmo5+dGtgVCMgBP716eXWyMGxqJGRe2o5KSmFNjaYAAABP0lEQVQ4y8XS13KDMBAF0AWDDe4t7r3ETu9lVxJgJ/n/X8rKAzHG5TE+Twz3zki7I/g/KXdghIbGJewrU4yzn08Ebgl6TuZzzuOC6W5es3HX6qsSz3NFShRU0MpucytDmOSpu3yULx3CA9RD1HjVedc0jSjqm6ZzhUjDsFDQhSp/OKj5GQvg0+ZCOixsbtDLAeTTOm/yGi8GyIphIVsgH737FEDV44LJa88IRKK/SetrwT9G/GUIr6vXjoy4GXn7+RboVXnghuSjaoGecwQxL2su3CwAKlO+QFoqxI4FMctHQhQd2OhxTu184jWUlI+rMTBTn1/IQcJHQ6GQdZ7pWiDaNdhTt330efISeiqYwQEzQpTlsURJLhzkEmpCPsERfeIUVyXr6MNuIyp5uziW6xURtt7hhGwzmMNJExfO4Bd9X0ZPqAxdNwAAAABJRU5ErkJggg==">
+              </image>
             </view>
             <view class="user-grade_name">
               <text>{{ userInfo.grade.name }}</text>
@@ -110,10 +113,18 @@
       </view>
     </view>
 
+    <!-- 退出登录 -->
+    <view v-if="isLogin" class="my-logout">
+      <view class="logout-btn" @click="handleLogout()">
+        <text>退出登录</text>
+      </view>
+    </view>
+
   </view>
 </template>
 
 <script>
+  import store from '@/store'
   import { setCartTabBadge } from '@/utils/app'
   import SettingKeyEnum from '@/common/enum/setting/Key'
   import SettingModel from '@/common/model/Setting'
@@ -173,15 +184,20 @@
      * 生命周期函数--监听页面显示
      */
     onShow(options) {
-      // 更新购物车角标
-      setCartTabBadge()
-      // 判断是否已登录
-      this.isLogin = checkLogin()
-      // 获取页面数据
-      this.getPageData()
+      this.onRefreshPage()
     },
 
     methods: {
+
+      // 刷新页面
+      onRefreshPage() {
+        // 更新购物车角标
+        setCartTabBadge()
+        // 判断是否已登录
+        this.isLogin = checkLogin()
+        // 获取页面数据
+        this.getPageData()
+      },
 
       // 获取页面数据
       getPageData(callback) {
@@ -302,6 +318,21 @@
       // 跳转到登录页
       handleLogin() {
         !this.isLogin && this.$navTo('pages/login/index')
+      },
+
+      // 退出登录
+      handleLogout() {
+        const app = this
+        uni.showModal({
+          title: '友情提示',
+          content: '您确定要退出登录吗?',
+          success(res) {
+            if (res.confirm) {
+              store.dispatch('Logout', {})
+                .then(result => app.onRefreshPage())
+            }
+          }
+        })
       },
 
       // 跳转到钱包页面
@@ -567,7 +598,22 @@
 
       }
     }
+  }
 
+  // 退出登录
+  .my-logout {
+    display: flex;
+    justify-content: center;
+    margin-top: 30rpx;
 
+    .logout-btn {
+      margin: 0 auto;
+      display: inline-block;
+      font-size: 26rpx;
+      color: #616161;
+      border-radius: 20rpx;
+      border: 1px solid #dcdcdc;
+      padding: 14rpx 150rpx;
+    }
   }
 </style>
