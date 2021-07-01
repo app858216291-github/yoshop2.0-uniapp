@@ -20,8 +20,8 @@ const $http = new request({
   header: {
     'content-type': 'application/json;charset=utf-8'
   },
-  // 请求超时时间, 单位ms（默认3000）
-  timeout: 3000,
+  // 请求超时时间, 单位ms（默认15秒）
+  timeout: 15000,
   // 默认配置（可不写）
   config: {
     // 是否自动提示错误
