@@ -63,7 +63,7 @@
           </view>
           <view v-if="!formData[index].imageList || formData[index].imageList.length < maxImageLength" class="image-picker"
             @click="chooseImage(index)">
-            <text class="choose-icon iconfont icon-tubiao_xiangji"></text>
+            <text class="choose-icon iconfont icon-camera"></text>
             <text class="choose-text">上传图片</text>
           </view>
         </view>

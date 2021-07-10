@@ -7,7 +7,7 @@
       </view>
       <view class="block-right">
         <text @click="onTargetToComment" class="show-more col-9">查看更多</text>
-        <text class="iconfont icon-xiangyoujiantou"></text>
+        <text class="iconfont icon-arrow-right"></text>
       </view>
     </view>
     <!-- 评论列表 -->

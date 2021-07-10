@@ -25,7 +25,7 @@
           </block>
         </view>
         <view class="detail-arrow dis-flex">
-          <text class="iconfont icon-xiangyoujiantou"></text>
+          <text class="iconfont icon-arrow-right"></text>
         </view>
       </view>
     </view>
@@ -77,7 +77,7 @@
           <view v-if="order.couponList.length > 0" @click="handleShowPopup()">
             <text class="col-m" v-if="order.couponId > 0">-￥{{ order.couponMoney }}</text>
             <text class="col-m" v-else>有{{ order.couponList.length }}张优惠券</text>
-            <text class="right-arrow iconfont icon-xiangyoujiantou"></text>
+            <text class="right-arrow iconfont icon-arrow-right"></text>
           </view>
           <text v-else class="">无优惠券可用</text>
         </view>
@@ -118,14 +118,14 @@
       <view class="pay-item dis-flex flex-x-between" @click="handleSelectPayType(PayTypeEnum.WECHAT.value)">
         <view class="item-left dis-flex flex-y-center">
           <view class="item-left_icon wechat">
-            <text class="iconfont icon-weixinzhifu"></text>
+            <text class="iconfont icon-wxpay"></text>
           </view>
           <view class="item-left_text">
             <text>{{ PayTypeEnum.WECHAT.name }}</text>
           </view>
         </view>
         <view class="item-right col-m" v-if="curPayType == PayTypeEnum.WECHAT.value">
-          <text class="iconfont icon-duihao"></text>
+          <text class="iconfont icon-check"></text>
         </view>
       </view>
       <!-- #endif -->
@@ -140,7 +140,7 @@
           </view>
         </view>
         <view class="item-right col-m" v-if="curPayType == PayTypeEnum.BALANCE.value">
-          <text class="iconfont icon-duihao"></text>
+          <text class="iconfont icon-check"></text>
         </view>
       </view>
     </view>

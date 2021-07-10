@@ -3,7 +3,7 @@
   <view class="search-wrapper">
     <view class="index-search" @click="onClick">
       <view class="index-cont-search t-c">
-        <text class="search-icon iconfont icon-sousuo"></text>
+        <text class="search-icon iconfont icon-search"></text>
         <text class="search-text">{{ tips }}</text>
       </view>
     </view>

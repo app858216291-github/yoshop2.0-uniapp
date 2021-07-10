@@ -3,7 +3,7 @@
   <view class="diy-search">
     <view class="inner" :class="itemStyle.searchStyle" @click="onTargetSearch">
       <view class="search-input" :style="{ textAlign: itemStyle.textAlign }">
-        <text class="search-icon iconfont icon-sousuo"></text>
+        <text class="search-icon iconfont icon-search"></text>
         <text> {{ params.placeholder }}</text>
       </view>
     </view>

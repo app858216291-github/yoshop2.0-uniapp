@@ -58,7 +58,7 @@
         </view>
         <!-- 上传图片 -->
         <view v-if="imageList.length < maxImageLength" class="image-picker" @click="chooseImage()">
-          <text class="choose-icon iconfont icon-tubiao_xiangji"></text>
+          <text class="choose-icon iconfont icon-camera"></text>
           <text class="choose-text">上传图片</text>
         </view>
       </view>

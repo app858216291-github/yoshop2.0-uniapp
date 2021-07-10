@@ -10,7 +10,7 @@
       </view>
       <!-- 扩展箭头 -->
       <view class="s-arrow f-26 col-9 t-r">
-        <text class="iconfont icon-xiangyoujiantou"></text>
+        <text class="iconfont icon-arrow-right"></text>
       </view>
     </view>
     <!-- 详情内容弹窗 -->

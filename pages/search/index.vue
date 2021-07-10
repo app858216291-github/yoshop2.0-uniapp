@@ -4,7 +4,7 @@
       <view class="search-input">
         <view class="search-input-wrapper">
           <view class="left">
-            <text class="search-icon iconfont icon-sousuo"></text>
+            <text class="search-icon iconfont icon-search"></text>
           </view>
           <view class="right">
             <input v-model="searchValue" class="input" focus="true" placeholder="请输入您搜索的商品" type="text"></input>

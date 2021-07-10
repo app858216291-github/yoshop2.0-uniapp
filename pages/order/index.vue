@@ -96,7 +96,7 @@
           <view class="pay-item dis-flex flex-x-between" @click="onSelectPayType(PayTypeEnum.WECHAT.value)">
             <view class="item-left dis-flex flex-y-center">
               <view class="item-left_icon wechat">
-                <text class="iconfont icon-weixinzhifu"></text>
+                <text class="iconfont icon-wxpay"></text>
               </view>
               <view class="item-left_text">
                 <text>{{ PayTypeEnum.WECHAT.name }}</text>

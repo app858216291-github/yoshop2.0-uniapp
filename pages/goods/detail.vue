@@ -50,7 +50,7 @@
           <text class="spec-name" v-for="(item, index) in goods.specList" :key="index">{{ item.spec_name }}</text>
         </view>
         <view class="f-26 col-9 t-r">
-          <text class="iconfont icon-xiangyoujiantou"></text>
+          <text class="iconfont icon-arrow-right"></text>
         </view>
       </view>
     </view>
