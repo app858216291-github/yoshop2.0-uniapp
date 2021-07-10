@@ -103,7 +103,7 @@
               app.list = result.data.list
               resolve(result)
             })
-            .catch(err => reject(err))
+            .catch(reject)
         })
       },
 
@@ -116,7 +116,7 @@
               app.defaultId = result.data.defaultId
               resolve(result)
             })
-            .catch(err => reject(err))
+            .catch(reject)
         })
       },
 

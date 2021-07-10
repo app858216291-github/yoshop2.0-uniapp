@@ -208,7 +208,7 @@
                 app.formData.images = fileIds
                 resolve(fileIds)
               })
-              .catch(err => reject(err))
+              .catch(reject)
           } else {
             resolve()
           }

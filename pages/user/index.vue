@@ -251,7 +251,7 @@
           SettingModel.data().then(setting => {
             app.setting = setting
             resolve(setting)
-          }).catch(err => reject(err))
+          }).catch(reject)
         })
       },
 

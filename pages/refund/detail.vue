@@ -220,7 +220,7 @@
               app.detail = result.data.detail
               resolve()
             })
-            .catch(err => reject(err))
+            .catch(reject)
         })
       },
 
@@ -233,7 +233,7 @@
               app.expressList = result.data.list
               resolve()
             })
-            .catch(err => reject(err))
+            .catch(reject)
         })
       },
 

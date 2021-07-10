@@ -202,7 +202,7 @@
               app.goods = result.data.detail
               resolve(result)
             })
-            .catch(err => reject(err))
+            .catch(reject)
         })
       },
 
@@ -215,7 +215,7 @@
               app.cartTotal = result.data.cartTotal
               resolve(result)
             })
-            .catch(err => reject(err))
+            .catch(reject)
         })
       },
 

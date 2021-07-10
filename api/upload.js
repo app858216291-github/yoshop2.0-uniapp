@@ -18,6 +18,6 @@ export const image = (files) => {
         })
         resolve(fileIds, result)
       })
-      .catch(err => reject(err))
+      .catch(reject)
   })
 }

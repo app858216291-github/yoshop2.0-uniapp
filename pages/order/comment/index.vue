@@ -244,7 +244,7 @@
                     app.formData[index].uploaded = fileIds
                     resolve(fileIds)
                   })
-                  .catch(err => reject(err))
+                  .catch(reject)
               })
             }))
             .then(resolve, reject)
