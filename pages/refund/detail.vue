@@ -42,7 +42,8 @@
     </view>
 
     <!-- 已退款金额 -->
-    <view v-if="detail.status == 20 && detail.type == 10" class="detail-order b-f row-block dis-flex flex-x-end flex-y-center">
+    <view v-if="detail.status == RefundStatusEnum.COMPLETED.value && detail.type == 10"
+      class="detail-order b-f row-block dis-flex flex-x-end flex-y-center">
       <text class="">已退款金额：</text>
       <text class="col-m">￥{{ detail.refund_money }}</text>
     </view>
@@ -78,7 +79,7 @@
     </view>
 
     <!-- 售后信息 -->
-    <view v-if="detail.status.value == 10" class="detail-refund b-f m-top20">
+    <view v-if="detail.status == RefundStatusEnum.REJECTED.value" class="detail-refund b-f m-top20">
       <view class="detail-refund__row dis-flex">
         <view class="text">
           <text class="col-m">拒绝原因：</text>
@@ -122,7 +123,8 @@
     </view>
 
     <!-- 填写物流信息 -->
-    <form v-if="detail.type == RefundTypeEnum.RETURN.value && detail.audit_status == AuditStatusEnum.REVIEWED.value && !detail.is_user_send"
+    <form
+      v-if="detail.type == RefundTypeEnum.RETURN.value && detail.audit_status == AuditStatusEnum.REVIEWED.value && !detail.is_user_send"
       @submit="onSubmit()">
       <view class="detail-express b-f m-top20">
         <view class="form-group dis-flex flex-y-center">
@@ -154,7 +156,7 @@
 </template>
 
 <script>
-  import { AuditStatusEnum, RefundTypeEnum } from '@/common/enum/order/refund'
+  import { AuditStatusEnum, RefundStatusEnum, RefundTypeEnum } from '@/common/enum/order/refund'
   import * as RefundApi from '@/api/refund'
   import * as ExpressApi from '@/api/express'
 
@@ -163,6 +165,7 @@
       return {
         // 枚举类
         AuditStatusEnum,
+        RefundStatusEnum,
         RefundTypeEnum,
         // 正在加载
         isLoading: true,
