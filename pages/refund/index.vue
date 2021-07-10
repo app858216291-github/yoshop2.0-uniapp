@@ -66,7 +66,7 @@
     value: -1
   }, {
     name: '待处理',
-    value: -1
+    value: 0
   }]
 
   export default {
