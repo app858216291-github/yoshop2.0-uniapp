@@ -62,7 +62,36 @@
           .finally(() => app.isLoading = false)
       }
 
+    },
+
+    /**
+     * 分享当前页面
+     */
+    onShareAppMessage() {
+      const app = this
+      // 构建页面参数
+      const params = app.$getShareUrlParams({ articleId: app.articleId });
+      return {
+        title: app.detail.title,
+        path: "/pages/article/detail?" + params
+      }
+    },
+
+    /**
+     * 分享到朋友圈
+     * 本接口为 Beta 版本，暂只在 Android 平台支持，详见分享到朋友圈 (Beta)
+     * https://developers.weixin.qq.com/miniprogram/dev/framework/open-ability/share-timeline.html
+     */
+    onShareTimeline() {
+      const app = this
+      // 构建页面参数
+      const params = app.$getShareUrlParams({ articleId: app.articleId });
+      return {
+        title: app.detail.title,
+        path: "/pages/article/detail?" + params
+      }
     }
+
   }
 </script>
 
