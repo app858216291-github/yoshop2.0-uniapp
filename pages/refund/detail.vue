@@ -12,7 +12,7 @@
     </view>
 
     <!-- 商品详情 -->
-    <view class="detail-goods b-f m-top20 dis-flex flex-dir-row" @click="onGoodsDetail()">
+    <view class="detail-goods b-f m-top20 dis-flex flex-dir-row" @click="onGoodsDetail(detail.orderGoods.goods_id)">
       <view class="left">
         <image class="goods-image" :src="detail.orderGoods.goods_image"></image>
       </view>
