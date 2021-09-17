@@ -134,7 +134,7 @@
       <view class="info-item">
         <view class="item-lable">买家留言</view>
         <view class="item-content">
-          <text>{{ order.buyer_remark ? buyer_remark : '--' }}</text>
+          <text>{{ order.buyer_remark ? order.buyer_remark : '--' }}</text>
         </view>
       </view>
     </view>
