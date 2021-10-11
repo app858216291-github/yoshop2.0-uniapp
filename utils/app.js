@@ -127,6 +127,15 @@ export const navTo = (url, query = {}) => {
 }
 
 /**
+ * 获取购物车商品总数量
+ * @param {*} value 
+ */
+export const getCartTotalNum = (value) => {
+  const cartTotal = uni.getStorageSync('cartTotalNum') || 0
+  return checkLogin() ? cartTotal : 0
+}
+
+/**
  * 记录购物车商品总数量
  * @param {*} value 
  */
@@ -140,7 +149,7 @@ export const setCartTotalNum = (value) => {
  */
 export const setCartTabBadge = () => {
   const cartTabbarIndex = 2
-  const cartTotal = uni.getStorageSync('cartTotalNum') || 0
+  const cartTotal = getCartTotalNum()
   if (cartTotal > 0) {
     uni.setTabBarBadge({
       index: cartTabbarIndex,
