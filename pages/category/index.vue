@@ -69,7 +69,8 @@
   import Search from '@/components/search'
   import Empty from '@/components/empty'
 
-  const App = getApp()
+  // 最后一次刷新时间
+  let lastRefreshTime;
 
   export default {
     components: {
@@ -100,20 +101,32 @@
       const app = this
       // 设置分类列表高度
       app.setListHeight()
+      // 加载页面数据
+      app.onRefreshPage()
     },
 
     /**
      * 生命周期函数--监听页面显示
      */
     onShow() {
-      const app = this
-      // 获取页面数据
-      app.getPageData()
-      // 更新购物车角标
-      setCartTabBadge()
+      // 每间隔5分钟自动刷新一次页面数据
+      const curTime = new Date().getTime()
+      if ((curTime - lastRefreshTime) > 5 * 60 * 1000) {
+        this.onRefreshPage()
+      }
     },
 
     methods: {
+
+      // 刷新页面
+      onRefreshPage() {
+        // 记录刷新时间
+        lastRefreshTime = new Date().getTime()
+        // 获取页面数据
+        this.getPageData()
+        // 更新购物车角标
+        setCartTabBadge()
+      },
 
       /**
        * 获取页面数据
