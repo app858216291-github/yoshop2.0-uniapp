@@ -55,7 +55,7 @@
           <text>售后类型：</text>
         </view>
         <view class="flex-box">
-          <text>{{ detail.type.text }}</text>
+          <text>{{ RefundTypeEnum[detail.type].name }}</text>
         </view>
       </view>
       <view class="detail-refund__row dis-flex">
