@@ -28,7 +28,7 @@
       <!-- 未登录 -->
       <view v-else class="user-info" @click="handleLogin">
         <view class="user-avatar">
-          <image class="image" src="/static/default-avatar.png"></image>
+          <avatar-image :width="100" />
         </view>
         <view class="user-content">
           <view class="nick-name">未登录</view>
