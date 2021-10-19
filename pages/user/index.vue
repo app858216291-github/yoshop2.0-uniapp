@@ -6,7 +6,7 @@
       <!-- 用户信息 -->
       <view v-if="isLogin" class="user-info">
         <view class="user-avatar">
-          <image class="image" :src="userInfo.avatar_url ? userInfo.avatar_url : '/static/default-avatar.png'"></image>
+          <avatar-image :url="userInfo.avatar_url" :width="100" />
         </view>
         <view class="user-content">
           <!-- 会员昵称 -->
@@ -123,6 +123,7 @@
 
 <script>
   import store from '@/store'
+  import AvatarImage from '@/components/avatar-image'
   import { setCartTabBadge } from '@/utils/app'
   import SettingKeyEnum from '@/common/enum/setting/Key'
   import SettingModel from '@/common/model/Setting'
@@ -153,6 +154,9 @@
   ]
 
   export default {
+    components: {
+      AvatarImage
+    },
     data() {
       return {
         // 枚举类
@@ -402,13 +406,6 @@
       display: flex;
       height: 100rpx;
       z-index: 1;
-
-      .user-avatar .image {
-        display: block;
-        width: 100rpx;
-        height: 100rpx;
-        border-radius: 50%;
-      }
 
       .user-content {
         display: flex;

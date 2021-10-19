@@ -15,7 +15,7 @@
       <view class="comment-item" v-for="(item, index) in list" :key="index">
         <view class="comment-item_row dis-flex flex-y-center">
           <view class="user-info dis-flex flex-y-center">
-            <image class="avatar" :src="item.user.avatar_url"></image>
+            <avatar-image class="user-avatar" :url="item.user.avatar_url" :width="50" />
             <text class="user-name">{{ item.user.nick_name }}</text>
           </view>
           <!-- 评星 -->
@@ -34,9 +34,13 @@
 </template>
 
 <script>
+  import AvatarImage from '@/components/avatar-image'
   import * as CommentApi from '@/api/comment'
 
   export default {
+    components: {
+      AvatarImage
+    },
     props: {
       // 商品ID
       goodsId: {
@@ -130,7 +134,7 @@
   .user-info {
     margin-right: 15rpx;
 
-    .avatar {
+    .user-avatar {
       width: 50rpx;
       height: 50rpx;
       border-radius: 50%;

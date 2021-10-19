@@ -1,6 +1,5 @@
 <template>
-  <mescroll-body ref="mescrollRef" :sticky="true" @init="mescrollInit" :down="{ use: false }" :up="upOption"
-    @up="upCallback">
+  <mescroll-body ref="mescrollRef" :sticky="true" @init="mescrollInit" :down="{ use: false }" :up="upOption" @up="upCallback">
     <!-- tab栏 -->
     <u-tabs :list="tabs" :is-scroll="false" :current="curTab" active-color="#FA2209" :duration="0.2" @change="onChangeTab" />
 
@@ -10,7 +9,7 @@
         <view class="item-head">
           <!-- 用户信息 -->
           <view class="user-info">
-            <image class="user-avatar" mode="aspectFill" :src="item.user.avatar_url"></image>
+            <avatar-image class="user-avatar" :url="item.user.avatar_url" :width="50" />
             <text class="user-name f-26">{{ item.user.nick_name }}</text>
           </view>
           <!-- 评星 -->
@@ -43,6 +42,7 @@
 <script>
   import MescrollBody from '@/components/mescroll-uni/mescroll-body.vue'
   import MescrollMixin from '@/components/mescroll-uni/mescroll-mixins'
+    import AvatarImage from '@/components/avatar-image'
   import { getEmptyPaginateObj, getMoreListData } from '@/utils/app'
   import * as CommentApi from '@/api/comment'
 
@@ -63,7 +63,8 @@
 
   export default {
     components: {
-      MescrollBody
+      MescrollBody,
+          AvatarImage
     },
     mixins: [MescrollMixin],
     data() {
@@ -215,9 +216,6 @@
       align-items: center;
 
       .user-avatar {
-        width: 50rpx;
-        height: 50rpx;
-        border-radius: 50%;
         margin-right: 15rpx;
       }
 
