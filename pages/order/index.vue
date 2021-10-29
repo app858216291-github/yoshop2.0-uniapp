@@ -56,22 +56,24 @@
           <view v-if="item.order_status != 20" class="order-handle">
             <view class="btn-group clearfix">
               <!-- 未支付取消订单 -->
-              <view v-if="item.pay_status.value == 10">
+              <view v-if="item.pay_status == PayStatusEnum.PENDING.value">
                 <view class="btn-item" @click="onCancel(item.order_id)">取消</view>
               </view>
               <!-- 已支付取消订单 -->
               <block v-if="item.order_status != OrderStatusEnum.APPLY_CANCEL.value">
-                <view v-if="item.pay_status == PayStatusEnum.SUCCESS.value && item.delivery_status == DeliveryStatusEnum.NOT_DELIVERED.value">
+                <view
+                  v-if="item.pay_status == PayStatusEnum.SUCCESS.value && item.delivery_status == DeliveryStatusEnum.NOT_DELIVERED.value">
                   <view class="btn-item" @click="onCancel(item.order_id)">申请取消</view>
                 </view>
               </block>
               <view v-else class="f-28 col-8">取消申请中</view>
               <!-- 订单支付 -->
-              <view v-if="item.pay_status == 10">
+              <view v-if="item.pay_status == PayStatusEnum.PENDING.value">
                 <view class="btn-item active" @click="onPay(item.order_id)">去支付</view>
               </view>
               <!-- 确认收货 -->
-              <view v-if="item.delivery_status == DeliveryStatusEnum.DELIVERED.value && item.receipt_status == ReceiptStatusEnum.NOT_RECEIVED.value">
+              <view
+                v-if="item.delivery_status == DeliveryStatusEnum.DELIVERED.value && item.receipt_status == ReceiptStatusEnum.NOT_RECEIVED.value">
                 <view class="btn-item active" @click="onReceipt(item.order_id)">确认收货</view>
               </view>
               <!-- 订单评价 -->
