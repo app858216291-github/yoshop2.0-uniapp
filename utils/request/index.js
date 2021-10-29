@@ -3,17 +3,17 @@
  */
 import store from '@/store'
 import request from './request'
-import config from '@/config'
+import Config from '@/core/config'
 
 // 后端api地址
-const baseURL = config.apiUrl
+const apiUrl = Config.get('apiUrl')
 
 // 可以new多个request来支持多个域名请求
 const $http = new request({
   // 接口请求地址
-  baseUrl: baseURL,
+  baseUrl: apiUrl,
   // 服务器本地上传文件地址
-  fileUrl: baseURL,
+  fileUrl: apiUrl,
   // 服务器上传图片默认url
   defaultUploadUrl: 'upload/image',
   // 设置请求头（如果使用报错跨域问题，可能是content-type请求类型和后台那边设置的不一致）
