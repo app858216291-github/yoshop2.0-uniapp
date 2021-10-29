@@ -25,7 +25,8 @@
               <view class="title">{{ item.name }}</view>
               <view class="bottom dis-flex flex-y-center">
                 <view class="time flex-box">
-                  <text class="f-24">{{ item.start_time }}~{{ item.end_time }}</text>
+                  <block v-if="item.start_time === item.end_time">{{ item.start_time }} 当天有效</block>
+                  <block v-else>{{ item.start_time }}~{{ item.end_time }}</block>
                 </view>
                 <view class="receive state">
                   <text>{{ item.state.text }}</text>

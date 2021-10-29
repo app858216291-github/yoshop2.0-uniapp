@@ -179,7 +179,8 @@
         <view class="coupon-list">
           <scroll-view :scroll-y="true" style="height: 565rpx;">
             <view class="coupon-item" v-for="(item, index) in order.couponList" :key="index">
-              <view class="item-wrapper" :class="[item.is_apply ? 'color-' + CouponColors[index % CouponColors.length] : 'color-gray']"
+              <view class="item-wrapper"
+                :class="[item.is_apply ? 'color-' + CouponColors[index % CouponColors.length] : 'color-gray']"
                 @click="handleSelectCoupon(index)">
                 <view class="coupon-type">{{ CouponTypeEnum[item.coupon_type].name }}</view>
                 <view class="tip dis-flex flex-dir-column flex-x-center">
@@ -187,7 +188,8 @@
                     <text class="f-30">￥</text>
                     <text class="money">{{ item.reduce_price }}</text>
                   </view>
-                  <text class="money" v-if="item.coupon_type == CouponTypeEnum.DISCOUNT.value">{{ item.discount }}折</text>
+                  <text class="money"
+                    v-if="item.coupon_type == CouponTypeEnum.DISCOUNT.value">{{ item.discount }}折</text>
                   <text class="pay-line">满{{ item.min_price }}元可用</text>
                 </view>
                 <view class="split-line"></view>
@@ -195,7 +197,8 @@
                   <view class="title">{{ item.name }}</view>
                   <view class="bottom dis-flex flex-y-center">
                     <view class="time flex-box">
-                      <text>有效期：{{ item.start_time }}~{{ item.end_time }}</text>
+                      <block v-if="item.start_time === item.end_time">{{ item.start_time }}</block>
+                      <block v-else>{{ item.start_time }}~{{ item.end_time }}</block>
                     </view>
                   </view>
                 </view>
