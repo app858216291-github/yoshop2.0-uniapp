@@ -7,7 +7,7 @@
           <view class="item-image">
             <image class="image" mode="widthFix" :src="dataItem.imgUrl"></image>
           </view>
-          <view class="item-text onelist-hidden">{{ dataItem.text }}</view>
+          <view class="item-text oneline-hide">{{ dataItem.text }}</view>
         </view>
       </view>
     </view>

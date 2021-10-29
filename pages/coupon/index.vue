@@ -15,7 +15,7 @@
           </view>
           <view class="split-line"></view>
           <view class="content dis-flex flex-dir-column flex-x-between">
-            <view class="title onelist-hidden">{{ item.name }}</view>
+            <view class="title oneline-hide">{{ item.name }}</view>
             <view class="bottom dis-flex flex-y-center">
               <view class="time flex-box">
                 <text v-if="item.expire_type == 10">领取{{ item.expire_day }}天内有效</text>

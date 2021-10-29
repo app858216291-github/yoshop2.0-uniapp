@@ -27,7 +27,7 @@
           <image class="image" :src="item.goods.goods_image" mode="scaleToFill"></image>
         </view>
         <view class="item-content">
-          <view class="goods-title twolist-hidden"><text>{{ item.goods.goods_name }}</text></view>
+          <view class="goods-title twoline-hide"><text>{{ item.goods.goods_name }}</text></view>
           <view class="goods-props clearfix">
             <view class="goods-props-item" v-for="(props, idx) in item.goods.skuInfo.goods_props" :key="idx">
               <text>{{ props.value.name }}</text>

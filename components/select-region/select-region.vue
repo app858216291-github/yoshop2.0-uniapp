@@ -4,7 +4,7 @@
       <u-loading mode="circle"></u-loading>
     </view>
     <view v-else class="field-body" @click="handleSelect()">
-      <view class="field-value onelist-hidden">{{ valueText ? valueText: placeholder }}</view>
+      <view class="field-value oneline-hide">{{ valueText ? valueText: placeholder }}</view>
     </view>
     <u-select v-model="show" mode="mutil-column-auto" :list="options" :default-value="defaultValue" @confirm="onConfirm"></u-select>
   </view>

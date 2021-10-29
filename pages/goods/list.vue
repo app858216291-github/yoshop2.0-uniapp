@@ -42,13 +42,13 @@
           </view>
           <view class="goods-item_right">
             <!-- 商品名称 -->
-            <view class="goods-name twolist-hidden">
+            <view class="goods-name twoline-hide">
               <text>{{ item.goods_name }}</text>
             </view>
             <view class="goods-item_desc">
               <!-- 商品卖点 -->
               <view class="desc-selling_point dis-flex">
-                <text class="onelist-hidden">{{ item.selling_point }}</text>
+                <text class="oneline-hide">{{ item.selling_point }}</text>
               </view>
               <!-- 商品销量 -->
               <view class="desc-goods_sales dis-flex">
@@ -70,11 +70,11 @@
           </view>
           <view class="detail">
             <!-- 商品标题 -->
-            <view class="goods-name twolist-hidden">
+            <view class="goods-name twoline-hide">
               {{ item.goods_name }}
             </view>
             <!-- 商品价格 -->
-            <view class="detail-price onelist-hidden">
+            <view class="detail-price oneline-hide">
               <text class="goods-price f-30 col-m">￥{{ item.goods_price_min }}</text>
               <text v-if="item.line_price_min > 0" class="line-price col-9 f-24">￥{{ item.line_price_min }}</text>
             </view>

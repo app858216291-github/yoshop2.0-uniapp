@@ -24,7 +24,7 @@
       <!-- 标题、分享 -->
       <view class="info-item info-item__name dis-flex flex-y-center">
         <view class="goods-name flex-box">
-          <text class="twolist-hidden">{{ goods.goods_name }}</text>
+          <text class="twoline-hide">{{ goods.goods_name }}</text>
         </view>
         <!-- #ifdef MP-WEIXIN -->
         <view class="goods-share__line"></view>

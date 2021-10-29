@@ -24,7 +24,7 @@
           </view>
         </view>
         <view class="item-content m-top20">
-          <text class="f-26 twolist-hidden">{{ item.content }}</text>
+          <text class="f-26 twoline-hide">{{ item.content }}</text>
         </view>
         <view class="comment-time">{{ item.create_time }}</view>
       </view>

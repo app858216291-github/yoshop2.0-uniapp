@@ -18,7 +18,7 @@
       </view>
       <view class="right dis-flex flex-box flex-dir-column flex-x-around">
         <view class="goods-name">
-          <text class="twolist-hidden">{{ detail.orderGoods.goods_name }}</text>
+          <text class="twoline-hide">{{ detail.orderGoods.goods_name }}</text>
         </view>
         <view class="dis-flex col-9 f-24">
           <view class="flex-box">

@@ -10,7 +10,7 @@
           </view>
           <!-- 商品信息 -->
           <view class="goods-content">
-            <view class="goods-title twolist-hidden"><text>{{ item.goods_name }}</text></view>
+            <view class="goods-title twoline-hide"><text>{{ item.goods_name }}</text></view>
             <view class="goods-props clearfix">
               <view class="goods-props-item" v-for="(props, idx) in item.goods_props" :key="idx">
                 <text>{{ props.value.name }}</text>

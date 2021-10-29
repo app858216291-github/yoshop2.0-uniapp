@@ -14,13 +14,13 @@
               </view>
               <view class="goods-item_right">
                 <!-- 商品名称 -->
-                <view v-if="itemStyle.show.includes('goodsName')" class="goods-name twolist-hidden">
+                <view v-if="itemStyle.show.includes('goodsName')" class="goods-name twoline-hide">
                   <text>{{ dataItem.goods_name }}</text>
                 </view>
                 <view class="goods-item_desc">
                   <!-- 商品卖点 -->
                   <view v-if="itemStyle.show.includes('sellingPoint')" class="desc-selling_point dis-flex">
-                    <text class="onelist-hidden">{{ dataItem.selling_point }}</text>
+                    <text class="oneline-hide">{{ dataItem.selling_point }}</text>
                   </view>
                   <!-- 商品销量 -->
                   <view v-if="itemStyle.show.includes('goodsSales')" class="desc-goods_sales dis-flex">
@@ -43,11 +43,11 @@
             </view>
             <view class="detail">
               <!-- 商品标题 -->
-              <view v-if="itemStyle.show.includes('goodsName')" class="goods-name twolist-hidden">
+              <view v-if="itemStyle.show.includes('goodsName')" class="goods-name twoline-hide">
                 {{ dataItem.goods_name }}
               </view>
               <!-- 商品价格 -->
-              <view class="detail-price onelist-hidden">
+              <view class="detail-price oneline-hide">
                 <text v-if="itemStyle.show.includes('goodsPrice')" class="goods-price f-30 col-m">￥{{ dataItem.goods_price_min }}</text>
                 <text v-if="itemStyle.show.includes('linePrice') && dataItem.line_price_min > 0" class="line-price col-9 f-24">￥{{ dataItem.line_price_min }}</text>
               </view>

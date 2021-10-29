@@ -22,7 +22,7 @@
             </view>
             <view class="goods-right flex-box">
               <view class="goods-name">
-                <text class="twolist-hidden">{{ item.orderGoods.goods_name }}</text>
+                <text class="twoline-hide">{{ item.orderGoods.goods_name }}</text>
               </view>
               <view class="goods-props clearfix">
                 <view class="goods-props-item" v-for="(props, idx) in item.orderGoods.goods_props" :key="idx">

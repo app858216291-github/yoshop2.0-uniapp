@@ -40,7 +40,7 @@
           </view>
           <view class="flow-list-right flex-box">
             <!-- 商品名称 -->
-            <text class="goods-name twolist-hidden">{{ item.goods_name }}</text>
+            <text class="goods-name twoline-hide">{{ item.goods_name }}</text>
             <!-- 商品规格 -->
             <view class="goods-props clearfix">
               <view class="goods-props-item" v-for="(props, idx) in item.skuInfo.goods_props" :key="idx">

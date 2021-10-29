@@ -6,7 +6,7 @@
       <!-- 小图模式 -->
       <block v-if="item.show_type == 10">
         <view class="article-item__left flex-box">
-          <view class="article-item__title twolist-hidden">
+          <view class="article-item__title twoline-hide">
             <text>{{ item.title }}</text>
           </view>
           <view class="article-item__footer m-top10">
@@ -19,7 +19,7 @@
       </block>
       <!-- 大图模式 -->
       <block v-if="item.show_type == 20">
-        <view class="article-item__title twolist-hidden">
+        <view class="article-item__title twoline-hide">
           <text>{{ item.title }}</text>
         </view>
         <view class="article-item__image m-top20">
