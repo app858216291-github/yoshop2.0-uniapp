@@ -2,7 +2,8 @@
   <view class="container">
     <view v-if="list.length" class="coupon-list">
       <view class="coupon-item" v-for="(item, index) in list" :key="index">
-        <view class="item-wrapper" :class="['color-' + color[index % color.length]]">
+        <view class="item-wrapper"
+          :class="[ item.state.value ? 'color-' + color[index % color.length] : 'color-gray' ]">
           <view class="coupon-type">{{ CouponTypeEnum[item.coupon_type].name }}</view>
           <view class="tip dis-flex flex-dir-column flex-x-center">
             <view v-if="item.coupon_type == CouponTypeEnum.FULL_DISCOUNT.value">
@@ -14,11 +15,14 @@
           </view>
           <view class="split-line"></view>
           <view class="content dis-flex flex-dir-column flex-x-between">
-            <view class="title">{{ item.name }}</view>
+            <view class="title onelist-hidden">{{ item.name }}</view>
             <view class="bottom dis-flex flex-y-center">
               <view class="time flex-box">
                 <text v-if="item.expire_type == 10">领取{{ item.expire_day }}天内有效</text>
-                <text v-if="item.expire_type == 20">{{ item.start_time }}~{{ item.end_time }}</text>
+                <text v-if="item.expire_type == 20">
+                  <block v-if="item.start_time === item.end_time">{{ item.start_time }} 当天有效</block>
+                  <block v-else>{{ item.start_time }}~{{ item.end_time }}</block>
+                </text>
               </view>
               <view class="receive" v-if="item.state.value" @click="receive(item.coupon_id)">
                 <text>立即领取</text>
@@ -169,6 +173,7 @@
       border-radius: 8px 0 0 8px;
 
       .title {
+        width: 400rpx;
         font-size: 32rpx;
       }
 
