@@ -23,7 +23,7 @@
             <view class="goods-item" v-for="(goods, idx) in item.goods" :key="idx">
               <!-- 商品图片 -->
               <view class="goods-image">
-                <image class="image" :src="goods.goods_image" mode="widthFix"></image>
+                <image class="image" :src="goods.goods_image" mode="scaleToFill"></image>
               </view>
               <!-- 商品信息 -->
               <view class="goods-content">

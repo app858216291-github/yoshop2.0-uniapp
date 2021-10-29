@@ -6,7 +6,7 @@
         <view class="goods-main">
           <!-- 商品图片 -->
           <view class="goods-image">
-            <image class="image" :src="item.goods_image" mode="widthFix"></image>
+            <image class="image" :src="item.goods_image" mode="scaleToFill"></image>
           </view>
           <!-- 商品信息 -->
           <view class="goods-content">

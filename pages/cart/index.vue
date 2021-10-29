@@ -24,7 +24,7 @@
           <radio class="radio" color="#fa2209" :checked="inArray(item.id, checkedIds)" />
         </label>
         <view class="goods-image">
-          <image class="image" :src="item.goods.goods_image" mode="widthFix"></image>
+          <image class="image" :src="item.goods.goods_image" mode="scaleToFill"></image>
         </view>
         <view class="item-content">
           <view class="goods-title twolist-hidden"><text>{{ item.goods.goods_name }}</text></view>
@@ -46,7 +46,8 @@
       </view>
     </view>
     <!-- 购物车数据为空 -->
-    <empty v-if="!list.length" :isLoading="isLoading" :custom-style="{ padding: '180rpx 50rpx' }" tips="您的购物车是空的, 快去逛逛吧">
+    <empty v-if="!list.length" :isLoading="isLoading" :custom-style="{ padding: '180rpx 50rpx' }"
+      tips="您的购物车是空的, 快去逛逛吧">
       <view slot="slot" class="empty-ipt" @click="onTargetIndex">
         <text>去逛逛</text>
       </view>
@@ -344,10 +345,12 @@
 
     .goods-image {
       width: 200rpx;
+      height: 200rpx;
 
       .image {
         display: block;
         width: 100%;
+        height: 100%;
         border-radius: 8rpx;
       }
     }
