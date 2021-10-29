@@ -1,15 +1,13 @@
 <template>
-  <goods-sku-popup :value="value" @input="onChangeValue" border-radius="20" :custom-action="findGoodsInfo"
-    :mode="skuMode" :defaultPrice="goods.goods_price_min" :defaultStock="goods.stock_total" :maskCloseAble="true"
-    @open="openSkuPopup" @close="closeSkuPopup" @add-cart="addCart" @buy-now="buyNow" />
+  <goods-sku-popup :value="value" @input="onChangeValue" border-radius="20" :localdata="goodsInfo" :mode="skuMode"
+    :maskCloseAble="true" @open="openSkuPopup" @close="closeSkuPopup" @add-cart="addCart" @buy-now="buyNow"
+    buyNowText="立即购买" />
 </template>
 
 <script>
   import { setCartTotalNum } from '@/utils/app'
   import * as CartApi from '@/api/cart'
   import GoodsSkuPopup from '@/components/goods-sku-popup'
-
-  let goodsInfo;
 
   export default {
     components: {
@@ -38,13 +36,15 @@
     },
 
     data() {
-      return {}
+      return {
+        goodsInfo: {}
+      }
     },
 
     created() {
       const app = this
       const { goods } = app
-      goodsInfo = {
+      app.goodsInfo = {
         _id: goods.goods_id,
         name: goods.goods_name,
         goods_thumb: goods.goods_image,
@@ -60,16 +60,6 @@
         this.$emit('input', val)
       },
 
-      /**
-       * 获取商品信息
-       * 这里可以看到每次打开SKU都会去重新请求商品信息,为的是每次打开SKU组件可以实时看到剩余库存
-       */
-      findGoodsInfo() {
-        return new Promise((resolve, reject) => {
-          resolve(goodsInfo)
-        })
-      },
-
       // 整理商品SKU列表
       getSkuList() {
         const app = this
@@ -82,7 +72,7 @@
             goods_id: item.goods_id,
             goods_name: goods_name,
             image: item.image_url ? item.image_url : goods_image,
-            price: item.goods_price,
+            price: item.goods_price * 100,
             stock: item.stock_num,
             spec_value_ids: item.spec_value_ids,
             sku_name_arr: app.getSkuNameArr(item.spec_value_ids)
