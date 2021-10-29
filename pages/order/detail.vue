@@ -25,7 +25,8 @@
             <image class="image" src="/static/order/status/received.png" mode="aspectFit"></image>
           </block>
           <!-- 已取消/待取消 -->
-          <block v-if="order.order_status == OrderStatusEnum.CANCELLED.value || order.order_status == OrderStatusEnum.APPLY_CANCEL.value">
+          <block
+            v-if="order.order_status == OrderStatusEnum.CANCELLED.value || order.order_status == OrderStatusEnum.APPLY_CANCEL.value">
             <image class="image" src="/static/order/status/close.png" mode="aspectFit"></image>
           </block>
         </view>
@@ -36,7 +37,8 @@
       <!-- 下一步操作 -->
       <view class="next-action" v-if="order.order_status == OrderStatusEnum.NORMAL.value">
         <view v-if="order.pay_status == PayStatusEnum.PENDING.value" class="action-btn" @click="onPay()">去支付</view>
-        <view v-if="order.delivery_status == DeliveryStatusEnum.DELIVERED.value && order.receipt_status == ReceiptStatusEnum.NOT_RECEIVED.value"
+        <view
+          v-if="order.delivery_status == DeliveryStatusEnum.DELIVERED.value && order.receipt_status == ReceiptStatusEnum.NOT_RECEIVED.value"
           class="action-btn" @click="onReceipt()">确认收货</view>
       </view>
     </view>
@@ -54,7 +56,8 @@
     </view>
 
     <!-- 物流信息 -->
-    <view v-if="order.delivery_type == DeliveryTypeEnum.EXPRESS.value && order.delivery_status == DeliveryStatusEnum.DELIVERED.value"
+    <view
+      v-if="order.delivery_type == DeliveryTypeEnum.EXPRESS.value && order.delivery_status == DeliveryStatusEnum.DELIVERED.value"
       class="express i-card" @click="handleTargetExpress()">
       <view class="main">
         <view class="info-item">
@@ -109,7 +112,8 @@
         <!-- 商品售后 -->
         <view class="goods-refund">
           <text v-if="goods.refund" class="stata-text">已申请售后</text>
-          <view v-else-if="order.isAllowRefund" class="action-btn" @click.stop="handleApplyRefund(goods.order_goods_id)">申请售后</view>
+          <view v-else-if="order.isAllowRefund" class="action-btn"
+            @click.stop="handleApplyRefund(goods.order_goods_id)">申请售后</view>
         </view>
       </view>
     </view>
@@ -183,16 +187,33 @@
     </view>
 
     <!-- 底部操作按钮 -->
-    <view v-if="order.order_status == OrderStatusEnum.NORMAL.value" class="footer-fixed">
+    <view v-if="order.order_status != OrderStatusEnum.CANCELLED.value" class="footer-fixed">
       <view class="btn-wrapper">
-        <block v-if="order.delivery_status == DeliveryStatusEnum.NOT_DELIVERED.value">
-          <view class="btn-item" @click="onCancel()">取消订单</view>
+        <!-- 未支付取消订单 -->
+        <block v-if="order.pay_status == PayStatusEnum.PENDING.value">
+          <view class="btn-item" @click="onCancel(order.order_id)">取消</view>
         </block>
+        <!-- 已支付进行中的订单 -->
+        <block v-if="order.order_status != OrderStatusEnum.APPLY_CANCEL.value">
+          <block
+            v-if="order.pay_status == PayStatusEnum.SUCCESS.value && order.delivery_status == DeliveryStatusEnum.NOT_DELIVERED.value">
+            <view class="btn-item" @click="onCancel(order.order_id)">申请取消</view>
+          </block>
+        </block>
+        <!-- 已申请取消 -->
+        <view v-else class="f-28 col-8">取消申请中</view>
+        <!-- 未支付的订单 -->
         <block v-if="order.pay_status == PayStatusEnum.PENDING.value">
           <view class="btn-item active" @click="onPay()">去支付</view>
         </block>
-        <block v-if="order.delivery_status == DeliveryStatusEnum.DELIVERED.value && order.receipt_status == ReceiptStatusEnum.NOT_RECEIVED.value">
-          <view class="btn-item active" @click="onReceipt()">确认收货</view>
+        <!-- 确认收货 -->
+        <block
+          v-if="order.delivery_status == DeliveryStatusEnum.DELIVERED.value && order.receipt_status == ReceiptStatusEnum.NOT_RECEIVED.value">
+          <view class="btn-item active" @click="onReceipt(order.order_id)">确认收货</view>
+        </block>
+        <!-- 订单评价 -->
+        <block v-if="order.order_status == OrderStatusEnum.COMPLETED.value && order.is_comment == 0">
+          <view class="btn-item" @click="handleTargetComment(order.order_id)">评价</view>
         </block>
       </view>
     </view>
@@ -326,14 +347,14 @@
       },
 
       // 取消订单
-      onCancel() {
+      onCancel(orderId) {
         const app = this
         uni.showModal({
           title: '友情提示',
           content: '确认要取消该订单吗？',
           success(o) {
             if (o.confirm) {
-              OrderApi.cancel(app.orderId)
+              OrderApi.cancel(orderId)
                 .then(result => {
                   // 显示成功信息
                   app.$success(result.message)
@@ -346,14 +367,14 @@
       },
 
       // 确认收货
-      onReceipt() {
+      onReceipt(orderId) {
         const app = this
         uni.showModal({
           title: '友情提示',
           content: '确认收到商品了吗？',
           success(o) {
             if (o.confirm) {
-              OrderApi.receipt(app.orderId)
+              OrderApi.receipt(orderId)
                 .then(result => {
                   // 显示成功信息
                   app.$success(result.message)
@@ -410,6 +431,11 @@
             app.getOrderDetail()
           }, 1500)
         }
+      },
+
+      // 跳转到订单评价页
+      handleTargetComment(orderId) {
+        this.$navTo('pages/order/comment/index', { orderId })
       },
 
     },

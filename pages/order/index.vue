@@ -53,38 +53,46 @@
             <text class="money">{{ item.pay_price }}</text>
           </view>
           <!-- 订单操作 -->
-          <view v-if="item.order_status != 20" class="order-handle">
+          <view v-if="item.order_status != OrderStatusEnum.CANCELLED.value" class="order-handle">
             <view class="btn-group clearfix">
               <!-- 未支付取消订单 -->
-              <view v-if="item.pay_status == PayStatusEnum.PENDING.value">
+              <block v-if="item.pay_status == PayStatusEnum.PENDING.value">
                 <view class="btn-item" @click="onCancel(item.order_id)">取消</view>
-              </view>
-              <!-- 已支付取消订单 -->
+              </block>
+              <!-- 已支付进行中的订单 -->
               <block v-if="item.order_status != OrderStatusEnum.APPLY_CANCEL.value">
-                <view
+                <block
                   v-if="item.pay_status == PayStatusEnum.SUCCESS.value && item.delivery_status == DeliveryStatusEnum.NOT_DELIVERED.value">
                   <view class="btn-item" @click="onCancel(item.order_id)">申请取消</view>
-                </view>
+                </block>
+                <!-- 订单核销码 -->
+                <block v-if="item.pay_status == PayStatusEnum.SUCCESS.value && item.delivery_type == DeliveryTypeEnum.EXTRACT.value
+                           && item.delivery_status == DeliveryStatusEnum.NOT_DELIVERED.value">
+                  <view class="btn-item active" @click="onExtractQRCode(item.order_id)">
+                    <text class="iconfont icon-qr-extract"></text>
+                    <text class="m-l-10">核销码</text>
+                  </view>
+                </block>
               </block>
+              <!-- 已申请取消 -->
               <view v-else class="f-28 col-8">取消申请中</view>
-              <!-- 订单支付 -->
-              <view v-if="item.pay_status == PayStatusEnum.PENDING.value">
+              <!-- 未支付的订单 -->
+              <block v-if="item.pay_status == PayStatusEnum.PENDING.value">
                 <view class="btn-item active" @click="onPay(item.order_id)">去支付</view>
-              </view>
+              </block>
               <!-- 确认收货 -->
-              <view
+              <block
                 v-if="item.delivery_status == DeliveryStatusEnum.DELIVERED.value && item.receipt_status == ReceiptStatusEnum.NOT_RECEIVED.value">
                 <view class="btn-item active" @click="onReceipt(item.order_id)">确认收货</view>
-              </view>
+              </block>
               <!-- 订单评价 -->
-              <view v-if="item.order_status == OrderStatusEnum.COMPLETED.value && item.is_comment == 0">
+              <block v-if="item.order_status == OrderStatusEnum.COMPLETED.value && item.is_comment == 0">
                 <view class="btn-item" @click="handleTargetComment(item.order_id)">评价</view>
-              </view>
+              </block>
             </view>
           </view>
-        </view>
 
-      </view>
+        </view>
 
     </mescroll-body>
 
