@@ -65,14 +65,6 @@
                   v-if="item.pay_status == PayStatusEnum.SUCCESS.value && item.delivery_status == DeliveryStatusEnum.NOT_DELIVERED.value">
                   <view class="btn-item" @click="onCancel(item.order_id)">申请取消</view>
                 </block>
-                <!-- 订单核销码 -->
-                <block v-if="item.pay_status == PayStatusEnum.SUCCESS.value && item.delivery_type == DeliveryTypeEnum.EXTRACT.value
-                           && item.delivery_status == DeliveryStatusEnum.NOT_DELIVERED.value">
-                  <view class="btn-item active" @click="onExtractQRCode(item.order_id)">
-                    <text class="iconfont icon-qr-extract"></text>
-                    <text class="m-l-10">核销码</text>
-                  </view>
-                </block>
               </block>
               <!-- 已申请取消 -->
               <view v-else class="f-28 col-8">取消申请中</view>
@@ -93,7 +85,7 @@
           </view>
 
         </view>
-
+      </view>
     </mescroll-body>
 
     <!-- 支付方式弹窗 -->
