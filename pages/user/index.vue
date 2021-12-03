@@ -11,7 +11,7 @@
         </view>
         <view class="user-content">
           <!-- 会员昵称 -->
-          <view class="nick-name">{{ userInfo.nick_name }}</view>
+          <view class="nick-name oneline-hide">{{ userInfo.nick_name }}</view>
           <!-- 会员等级 -->
           <view v-if="userInfo.grade_id > 0 && userInfo.grade" class="user-grade">
             <view class="user-grade_icon">
@@ -420,6 +420,7 @@
         .nick-name {
           font-size: 32rpx;
           font-weight: bold;
+          max-width: 270rpx;
         }
 
         .mobile {
@@ -428,6 +429,7 @@
         }
 
         .user-grade {
+          align-self: baseline;
           display: flex;
           align-items: center;
           background: #3c3c3c;
