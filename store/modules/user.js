@@ -33,7 +33,7 @@ const user = {
 
   actions: {
 
-    // 用户登录
+    // 用户登录(普通登录: 输入手机号和验证码)
     Login({ commit }, data) {
       return new Promise((resolve, reject) => {
         LoginApi.login({ form: data })
@@ -46,10 +46,23 @@ const user = {
       })
     },
 
-    // 微信小程序快捷登录
-    MpWxLogin({ commit }, data) {
+    // 微信小程序一键授权登录(获取用户基本信息)
+    LoginMpWx({ commit }, data) {
       return new Promise((resolve, reject) => {
-        LoginApi.mpWxLogin({ form: data }, { isPrompt: false })
+        LoginApi.loginMpWx({ form: data }, { isPrompt: false })
+          .then(response => {
+            const result = response.data
+            loginSuccess(commit, result)
+            resolve(response)
+          })
+          .catch(reject)
+      })
+    },
+
+    // 微信小程序一键授权登录(授权手机号)
+    LoginMpWxMobile({ commit }, data) {
+      return new Promise((resolve, reject) => {
+        LoginApi.loginMpWxMobile({ form: data }, { isPrompt: false })
           .then(response => {
             const result = response.data
             loginSuccess(commit, result)

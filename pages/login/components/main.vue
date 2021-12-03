@@ -1,5 +1,6 @@
 <template>
   <view class="container">
+
     <!-- 页面头部 -->
     <view class="header">
       <view class="title">
@@ -39,14 +40,21 @@
         <text>登录</text>
       </view>
     </view>
+
+    <!-- 微信授权手机号一键登录 -->
+    <!-- #ifdef MP-WEIXIN -->
+    <MpWeixinMobile :isParty="isParty" :partyData="partyData" />
+    <!-- #endif -->
+
   </view>
 </template>
 
 <script>
   import store from '@/store'
   import * as LoginApi from '@/api/login'
-  import { throttle, debounce } from '@/utils/util'
+  import * as CaptchaApi from '@/api/captcha'
   import * as Verify from '@/utils/verify'
+  import MpWeixinMobile from './mp-weixin-mobile'
 
   // 倒计时时长(秒)
   const times = 60
@@ -56,6 +64,10 @@
   const SUBMIT_LOGIN = 20
 
   export default {
+    components: {
+      MpWeixinMobile
+    },
+
     props: {
       // 是否存在第三方用户信息
       isParty: {
@@ -91,6 +103,7 @@
      * 生命周期函数--监听页面加载
      */
     created() {
+      console.log('main created')
       // 获取图形验证码
       this.getCaptcha()
     },
@@ -100,7 +113,7 @@
       // 获取图形验证码
       getCaptcha() {
         const app = this
-        LoginApi.captcha()
+        CaptchaApi.image()
           .then(result => app.captcha = result.data)
       },
 
@@ -166,7 +179,7 @@
       sendSmsCaptcha() {
         const app = this
         app.isLoading = true
-        LoginApi.sendSmsCaptcha({
+        CaptchaApi.sendSmsCaptcha({
             form: {
               captchaKey: app.captcha.key,
               captchaCode: app.captchaCode,
@@ -330,23 +343,5 @@
     border-radius: 80rpx;
     box-shadow: 0px 10px 20px 0px rgba(0, 0, 0, 0.1);
     letter-spacing: 5rpx;
-  }
-
-  // 微信授权登录
-  .wechat-auth {
-    display: flex;
-    justify-content: center;
-    margin-top: 40rpx;
-
-    .icon {
-      width: 38rpx;
-      height: 38rpx;
-      margin-right: 15rpx;
-    }
-
-    .title {
-      font-size: 28rpx;
-      color: #666666;
-    }
   }
 </style>

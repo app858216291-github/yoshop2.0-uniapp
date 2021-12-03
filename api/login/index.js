@@ -3,27 +3,21 @@ import request from '@/utils/request'
 // api地址
 const api = {
   login: 'passport/login',
-  mpWxLogin: 'passport/mpWxLogin',
-  captcha: 'passport/captcha',
-  sendSmsCaptcha: 'passport/sendSmsCaptcha'
+  loginMpWx: 'passport/loginMpWx',
+  loginMpWxMobile: 'passport/loginMpWxMobile',
 }
 
-// 用户登录
+// 用户登录(手机号+验证码)
 export function login(data) {
   return request.post(api.login, data)
 }
 
-// 微信小程序快捷登录
-export function mpWxLogin(data, option) {
-  return request.post(api.mpWxLogin, data, option)
+// 微信小程序快捷登录(获取微信用户基本信息)
+export function loginMpWx(data, option) {
+  return request.post(api.loginMpWx, data, option)
 }
 
-// 图形验证码
-export function captcha() {
-  return request.get(api.captcha, {}, { load: false })
-}
-
-// 发送短信验证码
-export function sendSmsCaptcha(data) {
-  return request.post(api.sendSmsCaptcha, data, { load: false })
+// 微信小程序快捷登录(授权手机号)
+export function loginMpWxMobile(data, option) {
+  return request.post(api.loginMpWxMobile, data, option)
 }

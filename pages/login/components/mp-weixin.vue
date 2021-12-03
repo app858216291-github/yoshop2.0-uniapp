@@ -8,9 +8,7 @@
     <view class="auth-title">申请获取以下权限</view>
     <view class="auth-subtitle">获得你的公开信息（昵称、头像等）</view>
     <view class="login-btn">
-      <!-- 获取微信用户信息（旧版已弃用） -->
-      <!-- <button class="button btn-normal" open-type="getUserInfo" lang="zh_CN" @getuserinfo="getUserInfo">授权登录</button> -->
-      <!-- 获取微信用户信息（新版） -->
+      <!-- 获取微信用户信息 -->
       <button class="button btn-normal" @click.stop="getUserProfile">授权登录</button>
     </view>
     <view class="no-login-btn">
@@ -21,6 +19,7 @@
 
 <script>
   import store from '@/store'
+  import { isEmpty } from '@/utils/util'
 
   export default {
 
@@ -80,7 +79,14 @@
       async onAuthSuccess(userInfo) {
         const app = this
         // 提交到后端
-        store.dispatch('MpWxLogin', { code: await app.getCode(), userInfo })
+        store.dispatch('LoginMpWx', {
+            partyData: {
+              code: await app.getCode(),
+              oauth: 'MP-WEIXIN',
+              userInfo
+            },
+            refereeId: store.getters.refereeId
+          })
           .then(result => {
             // 一键登录成功
             app.$toast(result.message)
@@ -90,10 +96,12 @@
             }, 2000)
           })
           .catch(err => {
-            if (err.result.data.showError) {
+            const resultData = err.result.data
+            if (isEmpty(resultData)) {
               // 显示错误信息
               app.$toast(err.result.message)
-            } else {
+            }
+            if (resultData.isBindMobile) {
               // 将oauth提交给父级
               app.onEmitSuccess(userInfo)
             }
@@ -110,20 +118,6 @@
           userInfo // 微信用户信息
         })
       },
-
-      // /**
-      //  * 授权登录（旧版弃用）
-      //  */
-      // getUserInfo(e) {
-      //   const app = this
-      //   if (e.detail.errMsg === 'getUserInfo:ok') {
-      //     app.$emit('success', {
-      //       oauth: 'MP-WEIXIN', // 第三方登录类型: MP-WEIXIN
-      //       code: app.code, // 微信登录的code, 用于换取openid
-      //       userInfo: JSON.parse(e.detail.rawData) // 微信用户信息
-      //     })
-      //   }
-      // },
 
       /**
        * 暂不登录

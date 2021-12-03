@@ -3,7 +3,8 @@ import request from '@/utils/request'
 // api地址
 const api = {
   userInfo: 'user/info',
-  assets: 'user/assets'
+  assets: 'user/assets',
+  bindMobile: 'user/bindMobile'
 }
 
 // 当前登录的用户信息
@@ -19,4 +20,9 @@ export const info = (param, option) => {
 // 账户资产
 export const assets = (param, option) => {
   return request.get(api.assets, param)
+}
+
+// 绑定手机号
+export const bindMobile = (data, option) => {
+  return request.post(api.bindMobile, data, option)
 }
