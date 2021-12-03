@@ -51,7 +51,7 @@
   const pageSize = 15
   const tabs = [{
     name: `未使用`,
-    value: 'isUsable'
+    value: 'isUnused'
   }, {
     name: `已使用`,
     value: 'isUse'
