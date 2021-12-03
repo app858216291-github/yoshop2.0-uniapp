@@ -20,7 +20,7 @@ const $http = new request({
   header: {
     'content-type': 'application/json;charset=utf-8'
   },
-  // 请求超时时间, 单位ms（默认15秒）
+  // 请求超时时间, 单位ms（默认15000）
   timeout: 15000,
   // 默认配置（可不写）
   config: {
@@ -187,13 +187,23 @@ $http.requestError = e => {
   if (e.statusCode === 0) {
     throw e
   } else {
-    setTimeout(() => {
-      uni.showToast({
-        title: `网络请求出错：${e.errMsg}`,
-        icon: "none",
-        duration: 2500
-      })
-    })
+    setTimeout(() => showRequestError(e), 10)
   }
 }
+
+// 显示请求错误信息
+const showRequestError = (e) => {
+  let errMsg = `网络请求出错：${e.errMsg}`
+  // #ifdef MP-WEIXIN
+  if (e.errMsg === 'request:fail url not in domain list') {
+    errMsg = '当前API域名未添加到微信小程序授权名单 ' + e.errMsg
+  }
+  // #endif
+  uni.showToast({
+    title: errMsg,
+    icon: "none",
+    duration: 3500
+  })
+}
+
 export default $http
