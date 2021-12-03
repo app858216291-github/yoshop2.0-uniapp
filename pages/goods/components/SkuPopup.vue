@@ -5,7 +5,7 @@
 </template>
 
 <script>
-  import { setCartTotalNum } from '@/utils/app'
+  import { setCartTotalNum } from '@/core/app'
   import * as CartApi from '@/api/cart'
   import GoodsSkuPopup from '@/components/goods-sku-popup'
 

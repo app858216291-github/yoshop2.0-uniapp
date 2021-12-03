@@ -30,7 +30,7 @@
 </template>
 
 <script>
-  import { getTabBarLinks } from '@/utils/app'
+  import { getTabBarLinks } from '@/core/app'
 
   export default {
 

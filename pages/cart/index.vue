@@ -85,7 +85,7 @@
 
 <script>
   import { inArray, arrayIntersect, debounce } from '@/utils/util'
-  import { checkLogin, setCartTotalNum, setCartTabBadge } from '@/utils/app'
+  import { checkLogin, setCartTotalNum, setCartTabBadge } from '@/core/app'
   import * as CartApi from '@/api/cart'
   import Empty from '@/components/empty'
 

@@ -126,12 +126,12 @@
 <script>
   import store from '@/store'
   import AvatarImage from '@/components/avatar-image'
-  import { setCartTabBadge } from '@/utils/app'
+  import { setCartTabBadge } from '@/core/app'
   import SettingKeyEnum from '@/common/enum/setting/Key'
   import SettingModel from '@/common/model/Setting'
   import * as UserApi from '@/api/user'
   import * as OrderApi from '@/api/order'
-  import { checkLogin } from '@/utils/app'
+  import { checkLogin } from '@/core/app'
 
   // 订单操作
   const orderNavbar = [

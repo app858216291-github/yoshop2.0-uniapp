@@ -6,7 +6,7 @@
 </template>
 
 <script>
-  import { setCartTabBadge } from '@/utils/app'
+  import { setCartTabBadge } from '@/core/app'
   import * as Api from '@/api/page'
   import Page from '@/components/page'
 

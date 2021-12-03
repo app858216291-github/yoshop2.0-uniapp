@@ -43,7 +43,7 @@
   import MescrollBody from '@/components/mescroll-uni/mescroll-body.vue'
   import MescrollMixin from '@/components/mescroll-uni/mescroll-mixins'
     import AvatarImage from '@/components/avatar-image'
-  import { getEmptyPaginateObj, getMoreListData } from '@/utils/app'
+  import { getEmptyPaginateObj, getMoreListData } from '@/core/app'
   import * as CommentApi from '@/api/comment'
 
   const pageSize = 15

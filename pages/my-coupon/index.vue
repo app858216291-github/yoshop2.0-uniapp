@@ -43,7 +43,7 @@
 <script>
   import MescrollBody from '@/components/mescroll-uni/mescroll-body.vue'
   import MescrollMixin from '@/components/mescroll-uni/mescroll-mixins'
-  import { getEmptyPaginateObj, getMoreListData } from '@/utils/app'
+  import { getEmptyPaginateObj, getMoreListData } from '@/core/app'
   import * as MyCouponApi from '@/api/myCoupon'
   import { CouponTypeEnum } from '@/common/enum/coupon'
 

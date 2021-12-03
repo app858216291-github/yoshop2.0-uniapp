@@ -54,7 +54,7 @@
 <script>
   import MescrollBody from '@/components/mescroll-uni/mescroll-body.vue'
   import MescrollMixin from '@/components/mescroll-uni/mescroll-mixins'
-  import { getEmptyPaginateObj, getMoreListData } from '@/utils/app'
+  import { getEmptyPaginateObj, getMoreListData } from '@/core/app'
   import * as RefundApi from '@/api/refund'
 
   // 每页记录数量

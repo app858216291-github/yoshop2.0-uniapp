@@ -1,6 +1,6 @@
 import store from '@/store'
 import storage from '@/utils/storage'
-import { getPlatform } from '@/utils/app'
+import { getPlatform } from '@/core/app'
 import { ACCESS_TOKEN, USER_ID } from '@/store/mutation-types'
 
 export default function Initializer() {

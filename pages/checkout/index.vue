@@ -225,7 +225,7 @@
   import { CouponTypeEnum } from '@/common/enum/coupon'
   import DeliveryTypeEnum from '@/common/enum/order/DeliveryType'
   import PayTypeEnum from '@/common/enum/order/PayType'
-  import { wxPayment } from '@/utils/app'
+  import { wxPayment } from '@/core/app'
 
   const CouponColors = ['red', 'blue', 'violet', 'yellow']
 

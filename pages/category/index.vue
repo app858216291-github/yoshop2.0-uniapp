@@ -62,7 +62,7 @@
 </template>
 
 <script>
-  import { setCartTabBadge } from '@/utils/app'
+  import { setCartTabBadge } from '@/core/app'
   import SettingKeyEnum from '@/common/enum/setting/Key'
   import SettingModel from '@/common/model/Setting'
   import * as CategoryApi from '@/api/category'

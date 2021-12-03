@@ -10,7 +10,7 @@ import {
   showSuccess,
   showError,
   getShareUrlParams
-} from './utils/app'
+} from './core/app'
 import './js_sdk/ican-H5Api/ican-H5Api'
 
 Vue.config.productionTip = false

@@ -25,7 +25,7 @@
   import MescrollBody from '@/components/mescroll-uni/mescroll-body.vue'
   import MescrollMixin from '@/components/mescroll-uni/mescroll-mixins'
   import * as LogApi from '@/api/balance/log'
-  import { getEmptyPaginateObj, getMoreListData } from '@/utils/app'
+  import { getEmptyPaginateObj, getMoreListData } from '@/core/app'
 
   const pageSize = 15
 

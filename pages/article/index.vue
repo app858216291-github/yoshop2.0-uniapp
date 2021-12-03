@@ -56,7 +56,7 @@
   import MescrollMixin from '@/components/mescroll-uni/mescroll-mixins'
   import * as ArticleApi from '@/api/article'
   import * as CategoryApi from '@/api/article/category'
-  import { getEmptyPaginateObj, getMoreListData } from '@/utils/app'
+  import { getEmptyPaginateObj, getMoreListData } from '@/core/app'
 
   const pageSize = 15
 

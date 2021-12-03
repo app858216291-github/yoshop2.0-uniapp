@@ -53,7 +53,7 @@
   import * as PlanApi from '@/api/recharge/plan'
   import SettingModel from '@/common/model/Setting'
   import SettingKeyEnum from '@/common/enum/setting/Key'
-  import { wxPayment } from '@/utils/app'
+  import { wxPayment } from '@/core/app'
 
   export default {
     data() {

@@ -136,9 +136,9 @@
   } from '@/common/enum/order'
   import MescrollBody from '@/components/mescroll-uni/mescroll-body.vue'
   import MescrollMixin from '@/components/mescroll-uni/mescroll-mixins'
-  import { getEmptyPaginateObj, getMoreListData } from '@/utils/app'
+  import { getEmptyPaginateObj, getMoreListData } from '@/core/app'
   import * as OrderApi from '@/api/order'
-  import { wxPayment } from '@/utils/app'
+  import { wxPayment } from '@/core/app'
 
   // 每页记录数量
   const pageSize = 15

@@ -264,7 +264,7 @@
     ReceiptStatusEnum
   } from '@/common/enum/order'
   import * as OrderApi from '@/api/order'
-  import { wxPayment } from '@/utils/app'
+  import { wxPayment } from '@/core/app'
 
   export default {
     data() {
