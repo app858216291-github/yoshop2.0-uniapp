@@ -72,6 +72,12 @@
       }
     },
     {
+      "path": "pages/user/bind/index",
+      "style": {
+        "navigationBarTitleText": "绑定手机"
+      }
+    },
+    {
       "path": "pages/article/index",
       "style": {
         "navigationBarTitleText": "资讯列表"

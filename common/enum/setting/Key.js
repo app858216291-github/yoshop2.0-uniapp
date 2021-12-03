@@ -5,15 +5,23 @@ import Enum from '../enum'
  * SettingKeyEnum
  */
 export default new Enum([{
-  key: 'PAGE_CATEGORY_TEMPLATE',
-  name: '分类页模板',
-  value: 'page_category_template'
-}, {
-  key: 'POINTS',
-  name: '积分设置',
-  value: 'points'
-}, {
-  key: 'RECHARGE',
-  name: '充值设置',
-  value: 'recharge'
-}])
+    key: 'REGISTER',
+    name: '账户注册设置',
+    value: 'register'
+  },
+  {
+    key: 'PAGE_CATEGORY_TEMPLATE',
+    name: '分类页模板',
+    value: 'page_category_template'
+  },
+  {
+    key: 'POINTS',
+    name: '积分设置',
+    value: 'points'
+  },
+  {
+    key: 'RECHARGE',
+    name: '充值设置',
+    value: 'recharge'
+  }
+])
