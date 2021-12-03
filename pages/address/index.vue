@@ -188,7 +188,7 @@
 
 <style lang="scss" scoped>
   .addres-list {
-    padding-bottom: 120rpx;
+    padding-bottom: 130rpx;
   }
 
   // 项目内容
