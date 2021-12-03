@@ -188,7 +188,8 @@
 
 <style lang="scss" scoped>
   .addres-list {
-    padding-bottom: 130rpx;
+    padding-bottom: calc(constant(safe-area-inset-bottom) + 120rpx);
+    padding-bottom: calc(env(safe-area-inset-bottom) + 120rpx);
   }
 
   // 项目内容
@@ -250,7 +251,7 @@
 
       .event-item {
         font-size: 28rpx;
-        margin-right: 22rpx;
+        margin-right: 26rpx;
         color: #4c4c4c;
 
         &:last-child {
@@ -272,23 +273,27 @@
     bottom: var(--window-bottom);
     left: 0;
     right: 0;
-    height: 96rpx;
+    min-height: 120rpx;
     z-index: 11;
-    box-shadow: 0 -4rpx 40rpx 0 rgba(144, 52, 52, 0.1);
+    box-shadow: 0 -4rpx 40rpx 0 rgba(151, 151, 151, 0.24);
     background: #fff;
 
+    // 设置ios刘海屏底部横线安全区域
+    padding-bottom: constant(safe-area-inset-bottom);
+    padding-bottom: env(safe-area-inset-bottom);
+
     .btn-wrapper {
-      height: 100%;
+      height: 120rpx;
       display: flex;
       align-items: center;
-      padding: 0 20rpx;
+      padding: 0 40rpx;
     }
 
     .btn-item {
       flex: 1;
       font-size: 28rpx;
-      height: 72rpx;
-      line-height: 72rpx;
+      height: 80rpx;
+      line-height: 80rpx;
       text-align: center;
       color: #fff;
       border-radius: 50rpx;

@@ -450,7 +450,8 @@
 </style>
 <style lang="scss" scoped>
   .container {
-    padding-bottom: 140rpx;
+    padding-bottom: constant(env(safe-area-inset-bottom) + 106rpx + 6rpx);
+    padding-bottom: calc(env(safe-area-inset-bottom) + 106rpx + 6rpx);
   }
 
   // 页面顶部
@@ -790,13 +791,16 @@
     bottom: var(--window-bottom);
     left: 0;
     right: 0;
-    height: 96rpx;
     z-index: 11;
-    box-shadow: 0 -4rpx 40rpx 0 rgba(97, 97, 97, 0.1);
+    box-shadow: 0 -4rpx 40rpx 0 rgba(151, 151, 151, 0.24);
     background: #fff;
 
+    // 设置ios刘海屏底部横线安全区域
+    padding-bottom: constant(safe-area-inset-bottom);
+    padding-bottom: env(safe-area-inset-bottom);
+
     .btn-wrapper {
-      height: 100%;
+      height: 106rpx;
       display: flex;
       align-items: center;
       justify-content: flex-end;
@@ -819,7 +823,6 @@
         background: linear-gradient(to right, #f9211c, #ff6335);
       }
     }
-
 
   }
 

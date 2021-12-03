@@ -30,19 +30,22 @@
         </view>
         <!-- 选择评价 -->
         <view class="score-row">
-          <view class="score-item score-praise" :class="{ active: formData[index].score == 10 }" @click="setScore(index, 10)">
+          <view class="score-item score-praise" :class="{ active: formData[index].score == 10 }"
+            @click="setScore(index, 10)">
             <view class="score">
               <text class="score-icon iconfont icon-haoping"></text>
               <text class="score-text">好评</text>
             </view>
           </view>
-          <view class="score-item score-review" :class="{ active: formData[index].score == 20 }" @click="setScore(index, 20)">
+          <view class="score-item score-review" :class="{ active: formData[index].score == 20 }"
+            @click="setScore(index, 20)">
             <view class="score">
               <text class="score-icon iconfont icon-zhongping"></text>
               <text class="score-text">中评</text>
             </view>
           </view>
-          <view class="score-item score-negative" :class="{ active: formData[index].score == 30 }" @click="setScore(index, 30)">
+          <view class="score-item score-negative" :class="{ active: formData[index].score == 30 }"
+            @click="setScore(index, 30)">
             <view class="score">
               <text class="score-icon iconfont icon-chaping"></text>
               <text class="score-text">差评</text>
@@ -52,7 +55,8 @@
 
         <!-- 评价内容 -->
         <view class="form-content">
-          <textarea class="textarea" v-model="formData[index].content" maxlength="500" placeholder="请输入评价内容 (留空则不评价)"></textarea>
+          <textarea class="textarea" v-model="formData[index].content" maxlength="500"
+            placeholder="请输入评价内容 (留空则不评价)"></textarea>
         </view>
 
         <!-- 图片列表 -->
@@ -61,8 +65,8 @@
             <text class="image-delete iconfont icon-shanchu" @click="deleteImage(index, imageIndex)"></text>
             <image class="image" mode="aspectFill" :src="image.path"></image>
           </view>
-          <view v-if="!formData[index].imageList || formData[index].imageList.length < maxImageLength" class="image-picker"
-            @click="chooseImage(index)">
+          <view v-if="!formData[index].imageList || formData[index].imageList.length < maxImageLength"
+            class="image-picker" @click="chooseImage(index)">
             <text class="choose-icon iconfont icon-camera"></text>
             <text class="choose-text">上传图片</text>
           </view>
@@ -257,7 +261,8 @@
 
 <style lang="scss" scoped>
   .container {
-    padding-bottom: 100rpx;
+    padding-bottom: constant(env(safe-area-inset-bottom) + 130rpx);
+    padding-bottom: calc(env(safe-area-inset-bottom) + 130rpx);
   }
 
   .goods-list {
@@ -528,8 +533,12 @@
     right: 0;
     height: 96rpx;
     z-index: 11;
-    box-shadow: 0 -4rpx 40rpx 0 rgba(144, 52, 52, 0.1);
+    box-shadow: 0 -4rpx 40rpx 0 rgba(151, 151, 151, 0.24);
     background: #fff;
+
+    // 设置ios刘海屏底部横线安全区域
+    padding-bottom: constant(safe-area-inset-bottom);
+    padding-bottom: env(safe-area-inset-bottom);
 
     .btn-wrapper {
       height: 100%;
@@ -541,8 +550,8 @@
     .btn-item {
       flex: 1;
       font-size: 28rpx;
-      height: 72rpx;
-      line-height: 72rpx;
+      height: 80rpx;
+      line-height: 80rpx;
       text-align: center;
       color: #fff;
       border-radius: 50rpx;
