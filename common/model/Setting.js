@@ -3,9 +3,9 @@ import storage from '@/utils/storage'
 
 const CACHE_KEY = 'Setting'
 
-// 写入缓存, 到期时间30分钟
+// 写入缓存, 到期时间10分钟
 const setStorage = (data) => {
-  const expireTime = 30 * 60
+  const expireTime = 10 * 60
   storage.set(CACHE_KEY, data, expireTime)
 }
 
