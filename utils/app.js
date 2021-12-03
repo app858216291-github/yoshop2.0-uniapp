@@ -91,7 +91,26 @@ export const getTabBarLinks = () => {
 }
 
 /**
- * 生成转发的url参数
+ * 生成完整的H5地址 [带参数]
+ * @param {string} h5Url H5访问地址
+ * @param {string} path 页面路径
+ * @param {object} params 页面参数
+ * @return {string}
+ */
+export const buildUrL = (h5Url, path, params) => {
+  let complete = h5Url
+  if (!util.isEmpty(path)) {
+    complete += '#/' + path
+    const shareParamsStr = getShareUrlParams(params)
+    if (!util.isEmpty(shareParamsStr)) {
+      complete += '?' + shareParamsStr
+    }
+  }
+  return complete
+}
+
+/**
+ * 生成转发的url参数(string格式)
  */
 export const getShareUrlParams = (params) => {
   return util.urlEncode({
