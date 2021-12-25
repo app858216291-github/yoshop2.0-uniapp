@@ -49,7 +49,7 @@
     /**
      * 生命周期函数--监听页面加载
      */
-    onLoad(options) {
+    onShow(options) {
       // 获取页面数据
       this.getPageData()
     },
@@ -131,13 +131,13 @@
   }
 
   .wallet-account_balance {
-    font-size: 52rpx;
+    font-size: 56rpx;
   }
 
   .wallet-account_lable {
-    margin-top: 10rpx;
+    margin-top: 14rpx;
     color: #cec1c1;
-    font-size: 24rpx;
+    font-size: 26rpx;
   }
 
   .space-lower {
@@ -146,20 +146,21 @@
   }
 
   .btn-recharge .btn-submit {
-    width: 400rpx;
+    width: 460rpx;
     height: 84rpx;
-    line-height: 84rpx;
     margin: 0 auto;
-    text-align: center;
     border-radius: 50rpx;
     background: #786cff;
     color: white;
     font-size: 30rpx;
+    display: flex;
+    justify-content: center;
+    align-items: center;
   }
 
   .item-lable {
     margin-top: 80rpx;
-    font-size: 26rpx;
+    font-size: 28rpx;
     color: rgb(94, 94, 94);
     padding: 0 100rpx;
   }
