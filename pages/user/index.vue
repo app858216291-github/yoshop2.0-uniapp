@@ -604,7 +604,7 @@
   .my-logout {
     display: flex;
     justify-content: center;
-    margin-top: 30rpx;
+    margin-top: 50rpx;
 
     .logout-btn {
       margin: 0 auto;
@@ -613,7 +613,7 @@
       color: #616161;
       border-radius: 20rpx;
       border: 1px solid #dcdcdc;
-      padding: 14rpx 150rpx;
+      padding: 14rpx 170rpx;
     }
   }
 </style>
