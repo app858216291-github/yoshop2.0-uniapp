@@ -125,7 +125,7 @@
 
     .content-scroll {
       min-height: 400rpx;
-      max-height: 750rpx;
+      max-height: 760rpx;
     }
 
     .s-list {

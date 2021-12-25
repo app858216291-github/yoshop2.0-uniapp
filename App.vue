@@ -63,4 +63,13 @@
 <style>
   /* 项目基础样式 */
   @import "./app.scss";
+
+  .uni-app--showlayout+uni-tabbar.uni-tabbar-bottom,
+  .uni-app--showlayout+uni-tabbar.uni-tabbar-bottom .uni-tabbar,
+  .uni-app--showlayout+uni-tabbar.uni-tabbar-top,
+  .uni-app--showlayout+uni-tabbar.uni-tabbar-top .uni-tabbar {
+    left: var(--window-left);
+    right: var(--window-right);
+  }
+
 </style>

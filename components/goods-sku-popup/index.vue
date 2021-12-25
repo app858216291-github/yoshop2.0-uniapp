@@ -1064,9 +1064,9 @@
   /*  sku弹出层 */
   .goods-sku-popup {
     position: fixed;
-    left: 0;
+    left: var(--window-left);
+    right: var(--window-right);
     top: 0;
-    right: 0;
     bottom: 0;
     z-index: 21;
     overflow: hidden;
@@ -1100,8 +1100,9 @@
 
     .mask {
       position: fixed;
+      left: var(--window-left);
+      right: var(--window-right);
       top: 0;
-      width: 100%;
       height: 100%;
       z-index: 1;
       background-color: rgba(0, 0, 0, 0.65);
@@ -1109,14 +1110,12 @@
 
     .layer {
       display: flex;
-      width: 100%;
-      // height: 1014rpx;
       flex-direction: column;
-      // min-height: 40vh;
-      // max-height: 1014rpx;
       position: fixed;
-      z-index: 99;
+      left: var(--window-left);
+      right: var(--window-right);
       bottom: 0;
+      z-index: 99;
       border-radius: 10rpx 10rpx 0 0;
       background-color: #fff;
 
@@ -1300,7 +1299,9 @@
         }
 
         .sure {
-          width: 698rpx;
+          margin: 0 auto;
+          width: 95%;
+          max-width: 1200rpx;
           height: 80rpx;
           border-radius: 38rpx;
           color: #fff;

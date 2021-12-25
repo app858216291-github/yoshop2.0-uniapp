@@ -24,3 +24,21 @@ page {
     transform: rotate(360deg) scale(1);
   }
 }
+
+/* #ifdef H5*/
+
+uni-page {
+  box-shadow: 0 1px 22px rgb(169, 169, 169, .3);
+}
+
+.footer-fixed {
+  left: var(--window-left) !important;
+  right: var(--window-right) !important;
+}
+
+.u-mask,.u-drawer {
+  left: var(--window-left) !important;
+  right: var(--window-right) !important;
+}
+
+/* #endif */

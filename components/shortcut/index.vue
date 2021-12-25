@@ -1,5 +1,5 @@
 <template>
-  <view class="shortcut" :style="{ right: right, bottom: bottom }">
+  <view class="shortcut" :style="{ right: `calc(var(--window-right) + ${right})`, bottom: `calc(var(--window-bottom) + ${bottom})` }">
 
     <!-- 首页 -->
     <view class="nav-item" :class="[isShow ? 'show_80' : (transparent ? '' : 'hide_80')]" @click="onTargetPage(0)">
@@ -84,8 +84,8 @@
   /* 快捷导航 */
   .shortcut {
     position: fixed;
-    right: 24rpx;
-    bottom: 250rpx;
+    right: calc(var(--window-right) + 24rpx);
+    bottom: calc(var(--window-bottom) + 250rpx);
     width: 76rpx;
     line-height: 1;
     z-index: 5;

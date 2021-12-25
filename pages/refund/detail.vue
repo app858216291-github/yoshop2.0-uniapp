@@ -291,6 +291,7 @@
     height: 140rpx;
 
     .header-backdrop {
+      width: 100%;
       position: absolute;
       top: 0;
       left: 0;
@@ -298,7 +299,7 @@
 
       .image {
         display: block;
-        width: 750rpx;
+        width: 100%;
         height: 140rpx;
       }
     }

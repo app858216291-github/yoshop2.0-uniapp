@@ -609,13 +609,14 @@
     margin-top: 50rpx;
 
     .logout-btn {
+      width: 50%;
       margin: 0 auto;
-      display: inline-block;
       font-size: 26rpx;
       color: #616161;
       border-radius: 20rpx;
       border: 1px solid #dcdcdc;
-      padding: 14rpx 170rpx;
+      padding: 14rpx 0;
+      text-align: center;
     }
   }
 </style>

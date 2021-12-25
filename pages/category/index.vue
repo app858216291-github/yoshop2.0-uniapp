@@ -46,10 +46,12 @@
               <view class="cate-cont-box">
                 <view class="flex-three" v-for="(item, idx) in list[curIndex].children" :key="idx"
                   @click="onTargetGoodsList(item.category_id)">
-                  <view class="cate-img">
-                    <image v-if="item.image" :src="item.image.preview_url"></image>
+                  <view class="cate-img-padding">
+                    <view v-if="item.image" class="cate-img">
+                      <image class="image" mode="scaleToFill" :src="item.image.preview_url"></image>
+                    </view>
                   </view>
-                  <text>{{ item.name }}</text>
+                  <text class="name oneline-hide">{{ item.name }}</text>
                 </view>
               </view>
             </view>
@@ -288,7 +290,7 @@
   .cate-left {
     flex-direction: column;
     display: flex;
-    width: 200rpx;
+    flex: 0 0 23%;
     color: #444;
     height: 100%;
     background: #f8f8f8;
@@ -297,7 +299,6 @@
   .cate-right {
     display: flex;
     flex-direction: column;
-    width: 550rpx;
     height: 100%;
     overflow: hidden;
   }
@@ -307,7 +308,7 @@
     display: flex;
     flex-flow: row wrap;
     align-content: flex-start;
-    padding-top: 26rpx;
+    padding-top: 15rpx;
   }
 
   .type-nav {
@@ -332,25 +333,34 @@
     padding-bottom: 10rpx;
     background: #fff;
     overflow: hidden;
-  }
 
-  .cate-cont-box .cate-img {
-    padding: 13rpx 10rpx 4rpx 10rpx;
-  }
+    .name {
+      display: block;
+      padding-bottom: 30rpx;
+      text-align: center;
+      font-size: 26rpx;
+      color: #444444;
+    }
 
-  .cate-cont-box .cate-img image {
-    width: 100%;
-    height: 150rpx;
-    border-radius: 10rpx;
-  }
+    .cate-img-padding {
+      padding: 16rpx 16rpx 4rpx 16rpx;
+    }
 
-  .cate-cont-box text {
-    text-align: center;
-    display: block;
-    font-size: 26rpx;
-    padding-bottom: 14rpx;
-    color: #444;
-    padding: 0 15rpx 30rpx 15rpx;
+    .cate-img {
+      position: relative;
+      width: 100%;
+      padding-top: 100%;
+
+      .image {
+        width: 100%;
+        height: 100%;
+        position: absolute;
+        top: 0;
+        left: 0;
+        border-radius: 10rpx;
+      }
+    }
+
   }
 
   .cate-two-box {

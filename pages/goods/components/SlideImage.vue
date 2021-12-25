@@ -1,9 +1,12 @@
 <template>
   <!-- 商品图片 -->
   <view class="images-swiper">
-    <swiper class="swiper-box" :autoplay="autoplay" :duration="duration" :indicator-dots="indicatorDots" :interval="interval" :circular="true" @change="setCurrent">
+    <swiper class="swiper-box" :autoplay="autoplay" :duration="duration" :indicator-dots="indicatorDots"
+      :interval="interval" :circular="true" @change="setCurrent">
       <swiper-item v-for="(item, index) in images" :key="index" @click="onPreviewImages(index)">
-        <image class="slide-image" mode="aspectFill" :src="item.preview_url"></image>
+        <view class="slide-image">
+          <image class="image" :src="item.preview_url"></image>
+        </view>
       </swiper-item>
     </swiper>
     <view class="swiper-count">
@@ -64,14 +67,25 @@
   }
 
   .swiper-box {
-    width: 750rpx;
-    height: 750rpx;
+    width: 100%;
+    height: 100vw;
+
+    /* #ifdef H5 */
+    max-width: 480px;
+    max-height: 480px;
+    margin: 0 auto;
+    /* #endif */
 
     .slide-image {
+      position: relative;
       width: 100%;
       height: 100%;
-      margin: 0 auto;
-      display: block;
+
+      .image {
+        display: block;
+        width: 100%;
+        height: 100%;
+      }
     }
   }
 
