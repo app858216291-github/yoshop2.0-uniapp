@@ -38,7 +38,7 @@
               <view class="goods-trade">
                 <view class="goods-price">
                   <text class="unit">￥</text>
-                  <text class="value">{{ goods.goods_price }}</text>
+                  <text class="value">{{ goods.is_user_grade ? goods.grade_goods_price : goods.goods_price }}</text>
                 </view>
                 <view class="goods-num">
                   <text>×{{ goods.total_num }}</text>
