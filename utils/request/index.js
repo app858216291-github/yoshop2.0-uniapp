@@ -82,9 +82,6 @@ $http.requestEnd = options => {
   }
 }
 
-// 登录弹窗次数
-let loginPopupNum = 0
-
 // 所有接口数据处理（可在接口里设置不调用此方法）
 // 此方法需要开发者根据各自的接口返回类型修改，以下只是模板
 $http.dataFactory = async res => {
@@ -135,31 +132,24 @@ $http.dataFactory = async res => {
     // 401也有可能是后端登录态到期, 所以要清空本地的登录状态
     store.dispatch('Logout')
     // 弹窗告诉用户去登录
-    if (loginPopupNum <= 0) {
-      loginPopupNum++
-      uni.showModal({
-        title: '温馨提示',
-        content: '此时此刻需要您登录喔~',
-        confirmText: "去登录",
-        cancelText: "再逛会",
-        success: res => {
-          loginPopupNum--
-          if (res.confirm) {
-            uni.navigateTo({
-              url: "/pages/login/index"
-            })
-          }
+    uni.showModal({
+      title: '温馨提示',
+      content: '此时此刻需要您登录喔~',
+      // showCancel: false,
+      confirmText: "去登录",
+      cancelText: "再逛会",
+      success: res => {
+        if (res.confirm) {
+          uni.navigateTo({
+            url: "/pages/login/index"
+          })
         }
-      })
-    }
-    // 返回错误的结果(catch接受数据)
-    return Promise.reject({
-      statusCode: 0,
-      errMsg: httpData.message,
-      result: httpData
+        if (res.cancel && getCurrentPages().length > 1) {
+          uni.navigateBack()
+        }
+      }
     })
   }
-
   // 其他错误提示
   if (httpData.status == 500) {
     if (res.isPrompt) {
@@ -199,6 +189,9 @@ const showRequestError = (e) => {
     errMsg = '当前API域名未添加到微信小程序授权名单 ' + e.errMsg
   }
   // #endif
+  if (e.errMsg === 'request:fail') {
+    errMsg = '网络请求错误：请检查api地址能否访问正常'
+  }
   uni.showToast({
     title: errMsg,
     icon: "none",
