@@ -1,10 +1,10 @@
 import Vue from 'vue'
+import uView from 'uview-ui'
 import App from './App'
 import store from './store'
-import uView from 'uview-ui'
+import platform from './core/platform'
 import bootstrap from './core/bootstrap'
 import {
-  getPlatform,
   navTo,
   showToast,
   showSuccess,
@@ -18,7 +18,7 @@ Vue.config.productionTip = false
 App.mpType = 'app'
 
 // 当前运行的终端
-Vue.prototype.$platform = getPlatform()
+Vue.prototype.$platform = platform
 
 // 载入uView库
 Vue.use(uView)

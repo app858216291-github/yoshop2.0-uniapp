@@ -3,41 +3,6 @@ import * as util from '@/utils/util'
 import { paginate } from '@/common/constant'
 
 /**
- * 获取当前运行的终端(App H5 小程序)
- * https://uniapp.dcloud.io/platform
- */
-export const getPlatform = () => {
-  // #ifdef APP-PLUS
-  const platform = 'App'
-  // #endif
-  // #ifdef APP-PLUS-NVUE
-  const platform = 'App'
-  // #endif
-  // #ifdef H5
-  const platform = 'H5'
-  // #endif
-  // #ifdef MP-WEIXIN
-  const platform = 'MP-WEIXIN'
-  // #endif
-  // #ifdef MP-ALIPAY
-  const platform = 'MP-ALIPAY'
-  // #endif
-  // #ifdef MP-BAIDU
-  const platform = 'MP-BAIDU'
-  // #endif
-  // #ifdef MP-TOUTIAO
-  const platform = 'MP-TOUTIAO'
-  // #endif
-  // #ifdef MP-QQ
-  const platform = 'MP-QQ'
-  // #endif
-  // #ifdef MP-360
-  const platform = 'MP-360'
-  // #endif
-  return platform
-}
-
-/**
  * 显示成功提示框
  */
 export const showSuccess = (msg, callback) => {
