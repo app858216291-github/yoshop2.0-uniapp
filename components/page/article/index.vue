@@ -80,8 +80,9 @@
       }
 
       .article-item__title {
-        max-height: 80rpx;
-        font-size: 30rpx;
+        max-height: 74rpx;
+        font-size: 28rpx;
+        line-height: 38rpx;
         color: #333;
       }
 
