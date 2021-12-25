@@ -7,7 +7,7 @@
     <view v-if="!isLoading" class="goods-info m-top20">
       <!-- 价格、销量 -->
       <view class="info-item info-item__top dis-flex flex-x-between flex-y-end">
-        <view class="block-left dis-flex flex-y-end">
+        <view class="block-left dis-flex flex-y-center">
           <!-- 商品售价 -->
           <text class="floor-price__samll">￥</text>
           <text class="floor-price">{{ goods.goods_price_min }}</text>

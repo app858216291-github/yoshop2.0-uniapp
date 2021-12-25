@@ -14,39 +14,39 @@
 .info-item__top {
   min-height: 40rpx;
   margin-bottom: 20rpx;
-}
-
-.info-item__top .active-tag {
-  width: 108rpx;
-  color: #fff;
-  background: #fe293f;
-  padding: 3rpx 5rpx;
-  border-radius: 15rpx;
-  font-size: 24rpx;
-  text-align: center;
-  margin-right: 15rpx;
+  line-height: 1;
 }
 
 .floor-price__samll {
   font-size: 26rpx;
   line-height: 1;
   color: #FA2209;
+  margin-bottom: -10rpx;
 }
 
 // 商品价
 .floor-price {
   color: #FA2209;
   margin-right: 15rpx;
-  font-size: 38rpx;
-  line-height: 1;
-  margin-bottom: -2rpx;
+  font-size: 42rpx;
 }
 
 .original-price {
-  font-size: 24rpx;
-  line-height: 1;
+  font-size: 26rpx;
   text-decoration: line-through;
   color: #959595;
+  margin-right: 15rpx;
+  margin-bottom: -6rpx;
+}
+
+// 会员价标签
+.user-grade {
+  background: #3c3c3c;
+  border-radius: 6rpx;
+  padding: 8rpx 14rpx;
+  margin-right: 15rpx;
+  font-size: 24rpx;
+  color: #EEE0C3;
 }
 
 .goods-sales {
@@ -55,7 +55,7 @@
 }
 
 .info-item__name .goods-name {
-  font-size: 28rpx;
+  font-size: 30rpx;
 }
 
 /* 商品分享 */
@@ -210,11 +210,12 @@
     flex: 1;
     font-size: 28rpx;
     height: 72rpx;
-    line-height: 72rpx;
     margin-right: 16rpx;
-    text-align: center;
     color: #fff;
     border-radius: 50rpx;
+    display: flex;
+    justify-content: center;
+    align-items: center;
   }
 
   // 立即购买按钮
