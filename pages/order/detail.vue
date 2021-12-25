@@ -295,7 +295,6 @@
     onLoad({ orderId }) {
       // 当前订单ID
       this.orderId = orderId
-
     },
 
     /**
@@ -357,7 +356,7 @@
               OrderApi.cancel(orderId)
                 .then(result => {
                   // 显示成功信息
-                  app.$success(result.message)
+                  app.$toast(result.message)
                   // 刷新当前订单数据
                   app.getOrderDetail()
                 })

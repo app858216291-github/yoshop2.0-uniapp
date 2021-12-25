@@ -307,7 +307,7 @@
               OrderApi.cancel(orderId)
                 .then(result => {
                   // 显示成功信息
-                  app.$success(result.message)
+                  app.$toast(result.message)
                   // 刷新订单列表
                   app.onRefreshList()
                 })
