@@ -1,31 +1,25 @@
 <template>
-  <view class="shortcut" :style="{ right: `calc(var(--window-right) + ${right})`, bottom: `calc(var(--window-bottom) + ${bottom})` }">
-
+  <view class="shortcut" :style="{ '--right': `${rightPx}px`, '--bottom': `${bottomPx}px` }">
     <!-- 首页 -->
     <view class="nav-item" :class="[isShow ? 'show_80' : (transparent ? '' : 'hide_80')]" @click="onTargetPage(0)">
       <text class="iconfont icon-home"></text>
     </view>
-
     <!-- 分类页 -->
     <view class="nav-item" :class="[isShow ? 'show_60' : (transparent ? '' : 'hide_60')]" @click="onTargetPage(1)">
       <text class="iconfont icon-cate"></text>
     </view>
-
     <!-- 购物车 -->
     <view class="nav-item" :class="[isShow ? 'show_40' : (transparent ? '' : 'hide_40')]" @click="onTargetPage(2)">
       <text class="iconfont icon-cart"></text>
     </view>
-
     <!-- 个人中心 -->
     <view class="nav-item" :class="[isShow ? 'show_20' : (transparent ? '' : 'hide_20')]" @click="onTargetPage(3)">
       <text class="iconfont icon-profile"></text>
     </view>
-
     <!-- 显示隐藏开关 -->
     <view class="nav-item nav-item__switch" :class="{ shortcut_click_show: isShow }" @click="onToggleShow()">
       <text class='iconfont icon-daohang'></text>
     </view>
-
   </view>
 </template>
 
@@ -40,12 +34,12 @@
      */
     props: {
       right: {
-        type: String,
-        default: '30rpx'
+        type: Number,
+        default: 30
       },
       bottom: {
-        type: String,
-        default: '200rpx'
+        type: Number,
+        default: 100
       }
     },
 
@@ -57,7 +51,19 @@
       }
     },
 
+    computed: {
+      rightPx() {
+        return uni.upx2px(this.right)
+      },
+      bottomPx() {
+        return uni.upx2px(this.bottom)
+      }
+    },
+
     methods: {
+
+
+
 
       /**
        * 导航菜单切换事件
@@ -84,9 +90,10 @@
   /* 快捷导航 */
   .shortcut {
     position: fixed;
-    right: calc(var(--window-right) + 24rpx);
-    bottom: calc(var(--window-bottom) + 250rpx);
+    right: calc(var(--window-right) + var(--right));
+    bottom: calc(var(--window-bottom) + var(--bottom));
     width: 76rpx;
+    height: 76rpx;
     line-height: 1;
     z-index: 5;
     border-radius: 50%;
