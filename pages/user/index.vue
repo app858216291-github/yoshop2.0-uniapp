@@ -41,7 +41,7 @@
 
     <!-- 我的钱包 -->
     <view class="my-asset">
-      <view class="asset-left flex-box dis-flex flex-x-center">
+      <view class="asset-left flex-box dis-flex flex-x-around">
         <view class="asset-left-item" @click="onTargetWallet">
           <view class="item-value dis-flex flex-x-center">
             <text>{{ isLogin ? assets.balance : '--' }}</text>
