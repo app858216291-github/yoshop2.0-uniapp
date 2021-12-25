@@ -89,7 +89,7 @@
       <!-- 积分抵扣 -->
       <view v-if="order.isAllowPoints" class="points flow-all-list dis-flex flex-y-center">
         <view class="block-left flex-five" @click="handleShowPoints()">
-          <text class="title">可用{{ order.setting.points_name }}抵扣：</text>
+          <text class="title">可用{{ setting.points_name }}抵扣：</text>
           <text class="iconfont icon-help"></text>
         </view>
         <view class="flex-five dis-flex flex-x-end flex-y-center">
@@ -142,6 +142,9 @@
           <view class="item-left_text">
             <text>{{ PayTypeEnum.BALANCE.name }}</text>
           </view>
+          <view class="user-balance">
+            <text>(可用￥{{ personal.balance }}元)</text>
+          </view>
         </view>
         <view class="item-right col-m" v-if="curPayType == PayTypeEnum.BALANCE.value">
           <text class="iconfont icon-check"></text>
@@ -171,7 +174,7 @@
     <!-- 积分说明弹窗 -->
     <u-modal v-model="showPoints" :title="`${setting.points_name}说明`">
       <scroll-view class="points-content" :scroll-y="true">
-        <text>{{ order.setting.points_describe }}</text>
+        <text>{{ setting.points_describe }}</text>
       </scroll-view>
     </u-modal>
 
@@ -244,8 +247,6 @@
         options: {},
         // 优惠券颜色组
         CouponColors,
-        // 系统设置
-        setting: {},
         // 当前选中的配送方式
         curDelivery: null,
         // 当前选中的支付方式
@@ -281,8 +282,12 @@
           // 是否存在错误
           hasError: false,
           // 错误信息
-          errorMsg: '',
-        }
+          errorMsg: ''
+        },
+        // 个人信息
+        personal: {},
+        // 商城设置
+        setting: {}
       }
     },
 
@@ -324,12 +329,16 @@
       initData({ order }) {
         const app = this
         app.order = order
+        app.personal = personal
+        app.setting = setting
         // 显示错误信息
         if (order.hasError) {
           app.$toast(order.errorMsg)
         }
         // 当前选择的配送方式
         app.curDelivery = order.delivery
+        // 如果只有一种配送方式则不显示选项卡
+        app.isShowTab = setting.deliveryType.length > 1
         // 当前选择支付方式 (如果是微信小程序默认使用微信支付)
         if (app.$platform === 'MP-WEIXIN') {
           app.curPayType = PayTypeEnum.WECHAT.value
