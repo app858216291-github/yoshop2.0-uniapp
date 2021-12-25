@@ -11,8 +11,12 @@
           <!-- 商品售价 -->
           <text class="floor-price__samll">￥</text>
           <text class="floor-price">{{ goods.goods_price_min }}</text>
+          <!-- 会员价标签 -->
+          <view v-if="goods.is_user_grade" class="user-grade">
+            <text>会员价</text>
+          </view>
           <!-- 划线价 -->
-          <text class="original-price">￥{{ goods.line_price_min }}</text>
+          <text v-if="goods.line_price_min > 0" class="original-price">￥{{ goods.line_price_min }}</text>
         </view>
         <view class="block-right dis-flex">
           <!-- 销量 -->
@@ -107,7 +111,8 @@
           <!-- 购物车 (非微信小程序端显示) -->
           <!-- #ifndef MP-WEIXIN -->
           <view class="fast-item fast-item--cart" @click="onTargetCart">
-            <view v-if="cartTotal > 0" class="fast-badge fast-badge--fixed">{{ cartTotal > 99 ? '99+' : cartTotal }}</view>
+            <view v-if="cartTotal > 0" class="fast-badge fast-badge--fixed">{{ cartTotal > 99 ? '99+' : cartTotal }}
+            </view>
             <view class="fast-icon">
               <text class="iconfont icon-gouwuche"></text>
             </view>
