@@ -249,10 +249,15 @@
       /**
        * 登录成功-跳转回原页面
        */
-      onNavigateBack(delta) {
-        uni.navigateBack({
-          delta: Number(delta || 1)
-        })
+      onNavigateBack(delta = 1) {
+        const pages = getCurrentPages()
+        if (pages.length > 1) {
+          uni.navigateBack({
+            delta: Number(delta || 1)
+          })
+        } else {
+          this.$navTo('pages/index/index')
+        }
       }
 
     }
