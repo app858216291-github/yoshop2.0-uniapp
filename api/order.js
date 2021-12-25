@@ -12,8 +12,8 @@ const api = {
 }
 
 // 当前用户待处理的订单数量
-export function todoCounts(param) {
-  return request.get(api.todoCounts, param)
+export function todoCounts(param, option) {
+  return request.get(api.todoCounts, param, option)
 }
 
 // 我的订单列表

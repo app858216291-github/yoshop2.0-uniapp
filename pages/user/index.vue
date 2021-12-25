@@ -1,5 +1,5 @@
 <template>
-  <view v-if="!isLoading" class="container">
+  <view v-if="!isFirstload" class="container">
     <!-- 页面头部 -->
     <view class="main-header"
       :style="{ height: $platform == 'H5' ? '240rpx' : '320rpx', paddingTop: $platform == 'H5' ? '0' : '50rpx' }">
@@ -167,6 +167,8 @@
         $platform: this.$platform,
         // 正在加载
         isLoading: true,
+        // 首次加载
+        isFirstload: true,
         // 是否已登录
         isLogin: false,
         // 系统设置
@@ -209,7 +211,7 @@
         app.isLoading = true
         Promise.all([app.getSetting(), app.getUserInfo(), app.getUserAssets(), app.getTodoCounts()])
           .then(result => {
-            app.isLoading = false
+            app.isFirstload = false
             // 初始化我的服务数据
             app.initService()
             // 初始化订单操作数据
@@ -217,9 +219,8 @@
             // 执行回调函数
             callback && callback()
           })
-          .catch(err => {
-            console.log('catch', err)
-          })
+          .catch(err => console.log('catch', err))
+          .finally(() => app.isLoading = false)
       },
 
       // 初始化我的服务数据
@@ -253,10 +254,11 @@
         const app = this
         return new Promise((resolve, reject) => {
           // 优化建议：data()方法传参true，启用缓存
-          SettingModel.data().then(setting => {
-            app.setting = setting
-            resolve(setting)
-          }).catch(reject)
+          SettingModel.data(true)
+            .then(setting => {
+              app.setting = setting
+              resolve(setting)
+            }).catch(reject)
         })
       },
 
@@ -264,7 +266,7 @@
       getUserInfo() {
         const app = this
         return new Promise((resolve, reject) => {
-          !app.isLogin ? resolve(null) : UserApi.info()
+          !app.isLogin ? resolve(null) : UserApi.info({}, { load: app.isFirstload })
             .then(result => {
               app.userInfo = result.data.userInfo
               resolve(app.userInfo)
@@ -284,7 +286,7 @@
       getUserAssets() {
         const app = this
         return new Promise((resolve, reject) => {
-          !app.isLogin ? resolve(null) : UserApi.assets()
+          !app.isLogin ? resolve(null) : UserApi.assets({}, { load: app.isFirstload })
             .then(result => {
               app.assets = result.data.assets
               resolve(app.assets)
@@ -304,7 +306,7 @@
       getTodoCounts() {
         const app = this
         return new Promise((resolve, reject) => {
-          !app.isLogin ? resolve(null) : OrderApi.todoCounts()
+          !app.isLogin ? resolve(null) : OrderApi.todoCounts({}, { load: app.isFirstload })
             .then(result => {
               app.todoCounts = result.data.counts
               resolve(app.todoCounts)

@@ -19,7 +19,7 @@ export const info = (param, option) => {
 
 // 账户资产
 export const assets = (param, option) => {
-  return request.get(api.assets, param)
+  return request.get(api.assets, param, option)
 }
 
 // 绑定手机号
