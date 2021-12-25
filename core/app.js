@@ -71,8 +71,10 @@ export const showError = (msg, callback) => {
  */
 export const showToast = msg => {
   uni.showToast({
-    title: msg,
-    icon: 'none'
+    title: msg, // 提示的内容
+    icon: 'none',
+    mask: true, // 是否显示透明蒙层，防止触摸穿透
+    duration // 提示的延迟时间，单位毫秒，默认：1500	
   })
 }
 
@@ -122,10 +124,11 @@ export const getShareUrlParams = (params) => {
 /**
  * 跳转到指定页面url
  * 支持tabBar页面
- * @param {string}  url
- * @param {object}  query
+ * @param {string}  url   页面路径
+ * @param {object}  query 页面参数
+ * @param {string}  modo  跳转类型(默认navigateTo)
  */
-export const navTo = (url, query = {}) => {
+export const navTo = (url, query = {}, modo = 'navigateTo') => {
   if (!url || url.length == 0) {
     return false
   }
@@ -139,7 +142,11 @@ export const navTo = (url, query = {}) => {
   // 生成query参数
   const queryStr = !util.isEmpty(query) ? '?' + util.urlEncode(query) : ''
   // 普通页面, 使用navigateTo
-  uni.navigateTo({
+  modo === 'navigateTo' && uni.navigateTo({
+    url: `/${url}${queryStr}`
+  })
+  // 特殊指定, 使用redirectTo
+  modo === 'redirectTo' && uni.redirectTo({
     url: `/${url}${queryStr}`
   })
   return true
