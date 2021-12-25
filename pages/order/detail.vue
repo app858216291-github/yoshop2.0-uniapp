@@ -39,7 +39,7 @@
         <view v-if="order.pay_status == PayStatusEnum.PENDING.value" class="action-btn" @click="onPay()">去支付</view>
         <view
           v-if="order.delivery_status == DeliveryStatusEnum.DELIVERED.value && order.receipt_status == ReceiptStatusEnum.NOT_RECEIVED.value"
-          class="action-btn" @click="onReceipt()">确认收货</view>
+          class="action-btn" @click="onReceipt(order.order_id)">确认收货</view>
       </view>
     </view>
 
