@@ -51,7 +51,11 @@
             <!-- 商品数量和单价 -->
             <view class="flow-list-cont dis-flex flex-x-between flex-y-center">
               <text class="small">×{{ item.total_num }}</text>
-              <text class="flow-cont">￥{{ item.goods_price }}</text>
+              <text class="flow-cont" :class="[item.is_user_grade ? 'price-delete' : '']">￥{{ item.goods_price }}</text>
+            </view>
+            <!-- 会员折扣价 -->
+            <view v-if="item.is_user_grade" class="grade-price">
+              <text>会员折扣价：￥{{ item.grade_goods_price }}</text>
             </view>
           </view>
         </view>
