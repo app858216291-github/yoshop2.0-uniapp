@@ -1118,6 +1118,9 @@
       z-index: 99;
       border-radius: 10rpx 10rpx 0 0;
       background-color: #fff;
+      // 设置ios刘海屏底部横线安全区域
+      padding-bottom: constant(safe-area-inset-bottom);
+      padding-bottom: env(safe-area-inset-bottom);
 
       .specification-wrapper {
         width: 100%;
