@@ -34,7 +34,7 @@ export const showError = (msg, callback) => {
 /**
  * 显示纯文字提示框
  */
-export const showToast = msg => {
+export const showToast = (msg, duration = 1500) => {
   uni.showToast({
     title: msg, // 提示的内容
     icon: 'none',
