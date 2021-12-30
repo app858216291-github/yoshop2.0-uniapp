@@ -326,7 +326,7 @@
       },
 
       // 初始化数据
-      initData({ order }) {
+      initData({ order, setting, personal }) {
         const app = this
         app.order = order
         app.personal = personal
