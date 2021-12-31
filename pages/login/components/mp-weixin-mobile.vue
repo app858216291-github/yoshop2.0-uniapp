@@ -13,6 +13,7 @@
 
 <script>
   import store from '@/store'
+  import { isEmpty } from '@/utils/util'
 
   export default {
     props: {
@@ -69,12 +70,14 @@
             }, 2000)
           })
           .catch(err => {
-            console.log(err)
-            if (err.result.data.isBack) {
-              // 跳转回原页面
-              setTimeout(() => {
-                app.onNavigateBack(1)
-              }, 2000)
+            const resultData = err.result.data
+            // 显示错误信息
+            if (isEmpty(resultData)) {
+              app.$toast(err.result.message)
+            }
+            // 跳转回原页面
+            if (resultData.isBack) {
+              setTimeout(() => app.onNavigateBack(1), 2000)
             }
           })
           .finally(() => app.isLoading = false)

@@ -97,12 +97,16 @@
           })
           .catch(err => {
             const resultData = err.result.data
+            // 显示错误信息
             if (isEmpty(resultData)) {
-              // 显示错误信息
               app.$toast(err.result.message)
             }
+            // 跳转回原页面
+            if (resultData.isBack) {
+              setTimeout(() => app.onNavigateBack(1), 2000)
+            }
+            // 判断还需绑定手机号
             if (resultData.isBindMobile) {
-              // 将oauth提交给父级
               app.onEmitSuccess(userInfo)
             }
           })
