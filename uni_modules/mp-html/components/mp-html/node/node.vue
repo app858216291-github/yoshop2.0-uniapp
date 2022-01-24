@@ -306,10 +306,10 @@ export default {
         } else {
           // 跳转页面
           uni.navigateTo({
-            url: href,
+            url: '/' + href,
             fail () {
               uni.switchTab({
-                url: href,
+                url: '/' + href,
                 fail () { }
               })
             }
