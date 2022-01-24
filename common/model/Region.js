@@ -27,7 +27,7 @@ export default {
       } else {
         this.getTreeDataFromApi().then(list => {
           // 缓存24小时
-          storage.set(REGION_TREE, list, 1 * 24 * 60 * 60 * 1000)
+          storage.set(REGION_TREE, list, 24 * 60 * 60)
           resolve(list)
         })
       }
