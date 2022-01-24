@@ -366,6 +366,7 @@ export default {
 
 /* 图片默认效果 */
 ._img {
+  display: block;
   max-width: 100%;
   -webkit-touch-callout: none;
 }
