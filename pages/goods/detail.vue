@@ -1,7 +1,7 @@
 <template>
   <view v-show="!isLoading" class="container">
     <!-- 商品图片轮播 -->
-    <SlideImage v-if="!isLoading" :images="goods.goods_images" />
+    <SlideImage v-if="!isLoading" :video="goods.video" :videoCover="goods.videoCover" :images="goods.goods_images" />
 
     <!-- 商品信息 -->
     <view v-if="!isLoading" class="goods-info m-top20">
