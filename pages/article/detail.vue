@@ -12,7 +12,7 @@
       </view>
     </view>
     <view class="article-content m-top20">
-      <jyf-parser :html="detail.content"></jyf-parser>
+      <mp-html :content="detail.content" />
     </view>
     <!-- 快捷导航 -->
     <shortcut />
@@ -20,7 +20,6 @@
 </template>
 
 <script>
-  import jyfParser from '@/components/jyf-parser/jyf-parser'
   import Shortcut from '@/components/shortcut'
   import * as ArticleApi from '@/api/article'
 

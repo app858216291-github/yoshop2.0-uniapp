@@ -75,7 +75,7 @@
       </view>
       <block v-if="goods.content != ''">
         <view class="goods-content__detail b-f">
-          <jyf-parser :html="goods.content"></jyf-parser>
+          <mp-html :content="goods.content" />
         </view>
       </block>
       <empty v-else tips="亲，暂无商品描述" />
@@ -145,8 +145,7 @@
 <script>
   import * as GoodsApi from '@/api/goods'
   import * as CartApi from '@/api/cart'
-  import jyfParser from '@/components/jyf-parser/jyf-parser'
-  import Shortcut from '@/components/shortcut'
+  // import Shortcut from '@/components/shortcut'
   import SlideImage from './components/SlideImage'
   import SkuPopup from './components/SkuPopup'
   import Comment from './components/Comment'
@@ -154,8 +153,7 @@
 
   export default {
     components: {
-      jyfParser,
-      Shortcut,
+      // Shortcut,
       SlideImage,
       SkuPopup,
       Comment,
