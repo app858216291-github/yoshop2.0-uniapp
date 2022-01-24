@@ -86,7 +86,10 @@
           <text class="iconfont" :class="[`icon-${item.icon}`]"></text>
         </view>
         <view class="item-name">{{ item.name }}</view>
-        <text class="order-badge" v-if="item.count && item.count > 0">{{ item.count }}</text>
+        <view class="item-badge" v-if="item.count && item.count > 0">
+          <text v-if="item.count <= 99" class="text">{{ item.count }}</text>
+          <text v-else class="text">99+</text>
+        </view>
       </view>
     </view>
 
@@ -100,6 +103,10 @@
               <text class="iconfont" :class="[`icon-${item.icon}`]"></text>
             </view>
             <view class="item-name">{{ item.name }}</view>
+            <view class="item-badge" v-if="item.count && item.count > 0">
+              <text v-if="item.count <= 99" class="text">{{ item.count }}</text>
+              <text v-else class="text">99+</text>
+            </view>
           </view>
           <view v-if="item.type == 'button' && $platform == 'MP-WEIXIN'" class="service-item">
             <button class="btn-normal" :open-type="item.openType">
@@ -152,7 +159,7 @@
     { id: 'help', name: '我的帮助', icon: 'bangzhu', type: 'link', url: 'pages/help/index' },
     { id: 'contact', name: '在线客服', icon: 'kefu', type: 'button', openType: 'contact' },
     { id: 'points', name: '我的积分', icon: 'jifen', type: 'link', url: 'pages/points/log' },
-    { id: 'refund', name: '退换/售后', icon: 'shouhou', type: 'link', url: 'pages/refund/index' },
+    { id: 'refund', name: '退换/售后', icon: 'shouhou', type: 'link', url: 'pages/refund/index', count: 0 },
   ]
 
   export default {
@@ -231,6 +238,10 @@
           if (item.id === 'points') {
             item.name = '我的' + app.setting[SettingKeyEnum.POINTS.value].points_name
           }
+          // 数据角标
+          if (item.count != undefined) {
+            item.count = app.todoCounts[item.id]
+          }
           newService.push(item)
         })
         app.service = newService
@@ -241,7 +252,7 @@
         const app = this
         const newOrderNavbar = []
         orderNavbar.forEach(item => {
-          if (item.hasOwnProperty('count')) {
+          if (item.count != undefined) {
             item.count = app.todoCounts[item.id]
           }
           newOrderNavbar.push(item)
@@ -462,6 +473,23 @@
     }
   }
 
+  // 角标组件
+  .item-badge {
+    position: absolute;
+    top: 0;
+    right: 55rpx;
+    background: #fa2209;
+    color: #fff;
+    border-radius: 100%;
+    min-width: 38rpx;
+    height: 38rpx;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 1rpx;
+    font-size: 22rpx;
+  }
+
   // 我的钱包
   .my-asset {
     display: flex;
@@ -542,20 +570,6 @@
         margin-right: 10rpx;
       }
 
-      .order-badge {
-        position: absolute;
-        top: 0;
-        right: 55rpx;
-        font-size: 22rpx;
-        background: #fa2209;
-        text-align: center;
-        line-height: 28rpx;
-        color: #fff;
-        border-radius: 100%;
-        min-height: 30rpx;
-        min-width: 30rpx;
-        padding: 1rpx;
-      }
     }
   }
 
