@@ -264,8 +264,7 @@
       getSetting() {
         const app = this
         return new Promise((resolve, reject) => {
-          // 优化建议：data()方法传参true，启用缓存
-          SettingModel.data(true)
+          SettingModel.data()
             .then(setting => {
               app.setting = setting
               resolve(setting)

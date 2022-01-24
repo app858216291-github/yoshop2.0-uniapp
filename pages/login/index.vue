@@ -56,7 +56,6 @@
         const isMpWeixin = app.$platform === 'MP-WEIXIN' && wx.canIUse('getUserProfile')
 
         // 获取后台设置
-        // 优化建议: 可以将isCache改为true启用缓存
         await SettingModel.item(SettingKeyEnum.REGISTER.value, false)
           .then(setting => {
             app.isMpWeixinAuth = isMpWeixin && setting.isOauthMpweixin

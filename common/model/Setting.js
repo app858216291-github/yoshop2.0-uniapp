@@ -1,5 +1,6 @@
-import * as SettingApi from '@/api/setting'
+import Config from '@/core/config'
 import storage from '@/utils/storage'
+import * as SettingApi from '@/api/setting'
 
 const CACHE_KEY = 'Setting'
 const OTHER = '_other'
@@ -30,7 +31,10 @@ const getApiData = () => {
  * 有缓存的情况下返回缓存, 没有缓存从后端api获取
  * @param {bool} isCache 是否从缓存中获取 [优点不用每次请求后端api 缺点后台更新设置后需等待时效性]
  */
-const data = (isCache = false) => {
+const data = isCache => {
+  if (isCache == undefined) {
+    isCache = Config.get('enabledSettingCache')
+  }
   return new Promise((resolve, reject) => {
     const cacheData = getStorage()
     if (isCache && cacheData) {
@@ -46,7 +50,7 @@ const data = (isCache = false) => {
 }
 
 // 获取商城设置(指定项)
-const item = (key, isCache = false) => {
+const item = (key, isCache) => {
   return new Promise((resolve, reject) => {
     data(isCache)
       .then(setting => {
