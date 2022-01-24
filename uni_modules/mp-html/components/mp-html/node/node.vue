@@ -354,7 +354,7 @@ export default {
 /* a 标签默认效果 */
 ._a {
   padding: 1.5px 0 1.5px 0;
-  color: #366092;
+  color: #3284e6;
   word-break: break-all;
 }
 
