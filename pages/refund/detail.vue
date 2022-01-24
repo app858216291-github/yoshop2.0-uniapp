@@ -49,7 +49,7 @@
     </view>
 
     <!-- 售后信息 -->
-    <view class="detail-refund b-f m-top20">
+    <view v-if="detail.status == RefundStatusEnum.REJECTED.value" class="detail-refund b-f m-top20">
       <view class="detail-refund__row dis-flex">
         <view class="text">
           <text>售后类型：</text>
@@ -79,7 +79,7 @@
     </view>
 
     <!-- 售后信息 -->
-    <view v-if="detail.status == RefundStatusEnum.REJECTED.value" class="detail-refund b-f m-top20">
+    <view v-if="detail.status.value == RefundStatusEnum.REJECTED.value" class="detail-refund b-f m-top20">
       <view class="detail-refund__row dis-flex">
         <view class="text">
           <text class="col-m">拒绝原因：</text>
@@ -90,10 +90,32 @@
       </view>
     </view>
 
+    <!-- 退货物流信息 -->
+    <view v-if="detail.audit_status == AuditStatusEnum.REVIEWED.value && detail.is_user_send"
+      class="detail-address b-f m-top20">
+      <view class="detail-address__row address-title">
+        <text class="col-m">退货物流信息</text>
+      </view>
+      <view class="detail-address__row address-details">
+        <view class="address-details__row">
+          <text>物流公司：{{ detail.express.express_name }}</text>
+        </view>
+        <view class="address-details__row">
+          <text>物流单号：{{ detail.express_no }}</text>
+        </view>
+        <!-- <view class="address-details__row">
+          <text>发货状态：{{ detail.is_user_send ? '已发货' : '未发货' }}</text>
+        </view> -->
+        <view class="address-details__row">
+          <text>发货时间：{{ detail.send_time }}</text>
+        </view>
+      </view>
+    </view>
+
     <!-- 商家收货地址 -->
     <view v-if="detail.audit_status == AuditStatusEnum.REVIEWED.value" class="detail-address b-f m-top20">
       <view class="detail-address__row address-title">
-        <text class="col-m">退货地址</text>
+        <text class="col-m">商家退货地址</text>
       </view>
       <view class="detail-address__row address-details">
         <view class="address-details__row">
@@ -388,24 +410,25 @@
 
   /* 商家收货地址 */
   .detail-address {
-    padding: 20rpx 30rpx;
+    padding: 20rpx 34rpx;
   }
 
   .address-details {
-    padding: 5rpx 0;
+    padding: 8rpx 0;
     border-bottom: 1px solid #eee;
 
     .address-details__row {
-      margin: 10rpx 0;
+      margin: 14rpx 0;
     }
   }
 
   .address-tips {
+    margin-top: 16rpx;
     line-height: 46rpx;
   }
 
   .detail-address__row {
-    margin: 15rpx 0;
+    // margin: 18rpx 0;
   }
 
   /* 填写物流信息 */
@@ -439,11 +462,12 @@
     .btn-item {
       flex: 1;
       font-size: 28rpx;
-      height: 100rpx;
-      line-height: 100rpx;
-      text-align: center;
+      height: 80rpx;
       color: #fff;
       border-radius: 50rpx;
+      display: flex;
+      justify-content: center;
+      align-items: center;
     }
 
     .btn-item-main {
