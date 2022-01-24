@@ -9,7 +9,7 @@
         <scroll-view :scroll-y="true" :style="{ height: `${scrollHeight - 10}px` }">
           <view class="cate-item" v-for="(item, index) in list" :key="index"
             @click="onTargetGoodsList(item.category_id)">
-            <image v-if="item.image" mode="widthFix" :src="item.image.preview_url"></image>
+            <image v-if="item.image" class="image" mode="widthFix" :src="item.image.preview_url"></image>
           </view>
         </scroll-view>
       </view>
@@ -21,7 +21,7 @@
         <scroll-view class="clear" :scroll-y="true" :style="{ height: `${scrollHeight - 10}px` }">
           <view class="cate-item" v-for="(item, index) in list" :key="index"
             @click="onTargetGoodsList(item.category_id)">
-            <image v-if="item.image" mode="widthFix" :src="item.image.preview_url"></image>
+            <image v-if="item.image" class="image" :src="item.image.preview_url"></image>
             <text class="f-26">{{ item.name }}</text>
           </view>
         </scroll-view>
@@ -264,16 +264,14 @@
     box-sizing: border-box;
   }
 
-  .cate_style__11 .cate-item image {
-    /* height: 208.656rpx; */
-    width: 100%;
-    display: block;
-  }
-
-  .cate_style__11 .cate-item image {
+  .cate_style__11 .cate-item .image {
     display: block;
     width: 100%;
+    height: 33vw;
     margin-bottom: 10rpx;
+
+
+
   }
 
   .cate_style__11 .cate-item text {
@@ -314,11 +312,12 @@
   .type-nav {
     position: relative;
     height: 90rpx;
-    line-height: 90rpx;
-    text-align: center;
     z-index: 10;
     display: block;
     font-size: 26rpx;
+    display: flex;
+    justify-content: center;
+    align-items: center;
   }
 
   .type-nav.selected {
